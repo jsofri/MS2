@@ -9,7 +9,8 @@
 
 namespace server_side {
     class ClientHandler {
-        virtual void handleClient(std::istream, std::ostream) = 0;
+    public:
+        virtual void handleClient(int &) = 0;
     };
 }
 

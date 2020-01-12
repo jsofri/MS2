@@ -10,10 +10,8 @@
 namespace server_side {
     class Server {
     public:
-        virtual void open(int, ClientHandler) = 0;
+        virtual void open(int, ClientHandler *) = 0;
         virtual void stop() = 0;
-    private:
-        virtual void run(int &, ClientHandler &) = 0;
     };
 }
 
