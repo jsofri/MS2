@@ -4,9 +4,11 @@
 
 #ifndef SOLVER_H
 #define SOLVER_H
-namespace server_side {
-    class Solver {
-        virtual Solution solve(Problem) = 0;
-    };
-}
+
+
+
+template <typename K, typename V>
+class Solver {
+    virtual V solve(K &) = 0;
+};
 #endif //SOLVER_H
