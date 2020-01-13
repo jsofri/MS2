@@ -10,15 +10,18 @@
 #include <iostream>
 #include <cstring>
 #include <sys/socket.h>
+#include "string_reverser.h"
+#include "stringer.h"
+#include "file_cache_manager.h"
 
-namespace server_side {
-    class MyTestClientHandler : public ClientHandler {
-    public:
-        void handleClient(int &);
-    private:
-        int reverseString(char *);
-    };
-}
+
+class MyTestClientHandler : public ClientHandler {
+public:
+    void handleClient(int &);
+private:
+    FileCacheManager<StringWrapper, string> file_cache_manager_;
+    StringReverser solver_;
+};
 
 
 #endif //MY_TEST_CLIENT_HANDLER_H

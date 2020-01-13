@@ -6,10 +6,11 @@
 #include "my_serial_server.h"
 
 using namespace server_side;
+using namespace std;
 
-void MySerialServer::open(int port, ClientHandler *client_handler) {
+void MySerialServer::open(int port, ClientHandler * client_handler) {
     keep_running_ = true;
-    server_thread_ = std::thread(&MySerialServer::run, this, port, client_handler);
+    server_thread_ = thread(&MySerialServer::run, this, ref(port), ref(client_handler));
 }
 
 
@@ -28,7 +29,7 @@ void MySerialServer::run(int & port, ClientHandler* & client_handler){
     }
 
     //bind socket to IP address
-    // we first need to create the sockaddr obj.
+    // we first need to creatargumentse the sockaddr obj.
     sockaddr_in address; //in means IP4
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY; //give me any IP allocated for my machine
@@ -45,21 +46,31 @@ void MySerialServer::run(int & port, ClientHandler* & client_handler){
     }
     //Server is now listening
 
-    int client_socket;
-    while (keep_running_) {
-        client_socket = accept(socketfd, (struct sockaddr *)&address,
-                                  (socklen_t*)&address);
-        if (client_socket != -1) {
-            client_handler -> handleClient(client_socket);
-        }
-    }
-    // accepting a client
+    this -> acceptClients(socketfd, address, client_handler);
 
 
-    if (client_socket == -1) {
+    /*if (client_socket == -1) {
         throw "Error accepting client";
-    }
+    }*/
 
     ::close(socketfd); //closing the listening socket
 }
 
+void MySerialServer::acceptClients(int socketfd, sockaddr_in address,
+                                   ClientHandler* client_handler) {
+    int client_socket;
+    auto diff = chrono::duration<double, std::milli>(0);
+    auto start = chrono::steady_clock::now();
+
+    while (keep_running_ && (diff < chrono::duration<double, std::milli>(120 * 1000))) {
+
+        client_socket = accept(socketfd, (struct sockaddr *)&address,
+                               (socklen_t*)&address);
+        if (client_socket != -1) {
+            client_handler -> handleClient(client_socket);
+            start = chrono::steady_clock::now();
+        }
+
+        diff = chrono::steady_clock::now() - start;
+    }
+}

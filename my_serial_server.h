@@ -12,6 +12,7 @@
 #include "iostream"
 #include <netinet/in.h>
 #include <unistd.h>
+#include "chrono"
 
 
 namespace server_side {
@@ -21,6 +22,7 @@ namespace server_side {
         void close();
     private:
         void run(int &, ClientHandler* &);
+        void acceptClients(int, sockaddr_in, ClientHandler*);
         bool keep_running_;
         std::thread server_thread_;
     };

@@ -5,31 +5,38 @@
 
 #include "my_test_client_handler.h"
 
-using namespace server_side;
 
 void MyTestClientHandler::handleClient(int& client_socket) {
 
     //reading from client
-    int n;
+    string solution, message;
     char buffer[1024] = {0};
-    int valread = read( client_socket , buffer, 1024);
-    std::cout<<buffer<<std::endl;
+    int val;
 
-    n = this -> reverseString(buffer);
+    do {
+        val = read(client_socket, buffer, 1024);
 
-    send(client_socket , buffer , n , 0 );
-    //message sent
-}
+        if (val == -1) {
+            throw "couldn't accept message from client";
+        }
 
-int MyTestClientHandler::reverseString(char * str) {
-    int length = strlen(str);
-    char tmp;
+        message = Stringer::stringFromCharArray(buffer);
 
-    for (int i = 0; i < length / 2; i++) {
-        tmp = str[i];
-        str[i] = str[length - 1 - i];
-        str[length -1 - i] = tmp;
-    }
+        StringWrapper string_wrapper(message);
 
-    return length;
+        try {
+            solution = file_cache_manager_.get(string_wrapper);
+
+        } catch (const char * e) {
+            solution = solver_.solve(string_wrapper);
+            file_cache_manager_.insert(string_wrapper, solution);
+        }
+
+        val = send(client_socket, solution.c_str(), solution.length(), 0);
+
+        if (val == -1) {
+            throw "couldn't send message to client";
+        }
+
+    } while (!strcmp(buffer, "end"));
 }

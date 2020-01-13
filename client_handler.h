@@ -7,12 +7,10 @@
 
 #include <iosfwd>
 
-namespace server_side {
-    class ClientHandler {
-    public:
-        virtual void handleClient(int &) = 0;
-    };
-}
+class ClientHandler {
+public:
+    virtual void handleClient(int &) = 0;
+};
 
 
 #endif //CLIENTHANDLER_H
