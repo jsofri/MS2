@@ -12,7 +12,11 @@ string Stringer::stringFromCharArray(char* array) {
     int i = 0;
 
     while (array[i] != '\0') {
+        if (array[i] == '\n' || array[i] == '\r') {
+            break;
+        }
         result += array[i];
+        i++;
     }
 
     return result;

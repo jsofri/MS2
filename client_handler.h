@@ -4,6 +4,7 @@
 
 #ifndef CLIENTHANDLER_H
 #define CLIENTHANDLER_H
+#define BUFFER_SIZE 1024
 
 #include <iosfwd>
 

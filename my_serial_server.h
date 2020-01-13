@@ -5,13 +5,14 @@
 #ifndef MYSERIALSERVER_H
 #define MYSERIALSERVER_H
 
+#include "iostream"
 #include "sys/socket.h"
 #include "server.h"
 #include "client_handler.h"
 #include <thread>
-#include "iostream"
 #include <netinet/in.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 #include "chrono"
 
 
@@ -22,7 +23,7 @@ namespace server_side {
         void close();
     private:
         void run(int &, ClientHandler* &);
-        void acceptClients(int, sockaddr_in, ClientHandler*);
+        void acceptClients(int, sockaddr_in&, ClientHandler*);
         bool keep_running_;
         std::thread server_thread_;
     };

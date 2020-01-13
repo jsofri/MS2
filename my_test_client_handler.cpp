@@ -2,7 +2,6 @@
 // Created by yehonatan on 09/01/2020.
 //
 
-
 #include "my_test_client_handler.h"
 
 
@@ -10,7 +9,7 @@ void MyTestClientHandler::handleClient(int& client_socket) {
 
     //reading from client
     string solution, message;
-    char buffer[1024] = {0};
+    char buffer[BUFFER_SIZE] = {0};
     int val;
 
     do {
@@ -32,11 +31,12 @@ void MyTestClientHandler::handleClient(int& client_socket) {
             file_cache_manager_.insert(string_wrapper, solution);
         }
 
+        solution += '\n';
         val = send(client_socket, solution.c_str(), solution.length(), 0);
 
         if (val == -1) {
             throw "couldn't send message to client";
         }
 
-    } while (!strcmp(buffer, "end"));
+    } while (message != "end");
 }
