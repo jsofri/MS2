@@ -1,12 +1,17 @@
 //
-// Created by yehonatan on 09/01/2020.
+// Created by rony on 12/01/2020.
 //
 
-#ifndef SOLVER_H
-#define SOLVER_H
+#ifndef MS2_SOLVER_H
+#define MS2_SOLVER_H
+
+
 namespace server_side {
+    template<typename K, typename V>
     class Solver {
-        virtual Solution solve(Problem) = 0;
+    public:
+        virtual V solve(K) = 0;
     };
 }
-#endif //SOLVER_H
+
+#endif //MS2_SOLVER_H
