@@ -10,9 +10,9 @@
 #include <iostream>
 #include <cstring>
 #include <sys/socket.h>
-#include "string_reverser.h"
-#include "stringer.h"
-#include "file_cache_manager.h"
+#include "../string_reverser.h"
+#include "../util/stringer.h"
+#include "../cache_manager/file_cache_manager.h"
 
 
 class MyTestClientHandler : public ClientHandler {

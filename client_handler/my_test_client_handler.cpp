@@ -12,7 +12,7 @@ void MyTestClientHandler::handleClient(int& client_socket) {
     char buffer[BUFFER_SIZE] = {0};
     int val;
 
-    do {
+    while (true) {
         val = read(client_socket, buffer, 1024);
 
         if (val == -1) {
@@ -21,6 +21,9 @@ void MyTestClientHandler::handleClient(int& client_socket) {
 
         message = Stringer::stringFromCharArray(buffer);
 
+      if (message == "end") {
+        break;
+      }
         StringWrapper string_wrapper(message);
 
         try {
@@ -37,6 +40,5 @@ void MyTestClientHandler::handleClient(int& client_socket) {
         if (val == -1) {
             throw "couldn't send message to client";
         }
-
-    } while (message != "end");
+    }
 }
