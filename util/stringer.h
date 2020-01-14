@@ -8,6 +8,8 @@
 
 #include "cstring"
 #include "string"
+#include "vector"
+#include "regex"
 
 
 using namespace std;
@@ -16,6 +18,7 @@ using namespace std;
 class Stringer {
 public:
     static string stringFromCharArray(char*);
+    static vector<string> doRegex(string, string);
 };
 
 
