@@ -26,7 +26,7 @@ public:
 
     void objectToFile(K & key, V & value) {
         fstream file;
-        string file_name = key.toString();
+        string file_name = to_string(key.toString());
 
         file.open(file_name.c_str(), ios::out|ios::binary);
 
