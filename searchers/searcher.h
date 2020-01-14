@@ -5,10 +5,14 @@
 #ifndef SEARCHER_H_
 #define SEARCHER_H_
 
+
+#include "../searchable.h"
+
+
 template <typename P, typename S>
 class Searcher {
  public:
-    virtual S search(P) = 0;
+    virtual S search(Searchable<P> &) = 0;
 };
 
 #endif //SEARCHER_H_
