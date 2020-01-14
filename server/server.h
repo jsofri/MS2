@@ -5,7 +5,7 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "client_handler.h"
+#include "../client_handler/client_handler.h"
 
 namespace server_side {
     class Server {

@@ -8,7 +8,7 @@
 
 #include <string>
 #include "solver.h"
-#include "string_wrapper.h"
+#include "objects/string_wrapper.h"
 
 
 using namespace std;
