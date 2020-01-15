@@ -5,6 +5,8 @@
 #ifndef SEARCHER_H_
 #define SEARCHER_H_
 
+#include <searchable.h>
+
 template <typename P, typename S>
 class Searcher {
  public:
