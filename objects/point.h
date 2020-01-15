@@ -12,6 +12,7 @@ class Point {
   Point(unsigned int x, unsigned int y) : x_(x), y_(y) {}
   unsigned int getX();
   unsigned int getY();
+  bool operator==(Point);
  private:
   unsigned int x_;
   unsigned int y_;

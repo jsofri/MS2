@@ -8,14 +8,14 @@
 string MatrixBFS::search(Searchable<Point> & searchable) {
   string solution;
 
-  init();
+  init(searchable);
 
   string = runBFS();
 
   delete(queue_);
 }
 
-void MatrixBFS::init(Matrix & matrix) {
+void MatrixBFS::init(Searchable<Point> & searchable) {
   //set data structures - queue
   //set color and distance of each vertex
 }
