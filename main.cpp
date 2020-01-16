@@ -2,6 +2,7 @@
 // Created by rony on 13/01/2020.
 //
 
+#include <searchers/matrix_dfs.h>
 #include "server/my_serial_server.h"
 #include "client_handler/my_test_client_handler.h"
 #include "objects/matrix.h"
@@ -28,6 +29,8 @@ using namespace server_side;
 }*/
 
 int main() {
+
+    MatrixDFS mdfs;
   //foo();
 
   /*MySerialServer sersev;

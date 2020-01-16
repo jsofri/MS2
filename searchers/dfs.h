@@ -10,7 +10,7 @@
 
 template <typename P, typename S>
 class DFS : public Searcher<P, S> {
-    virtual S search(P) = 0;
+    virtual S search(Searchable<P>) = 0;
 };
 
 #endif //DFS_ALGORITHM_H_

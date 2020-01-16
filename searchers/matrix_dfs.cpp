@@ -2,7 +2,6 @@
 // Created by rony on 14/01/2020.
 //
 
-#include <objects/amdc.h>
 #include "matrix_dfs.h"
 
 string MatrixDFS::search(Searchable<Point> searchable) {
