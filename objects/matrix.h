@@ -38,7 +38,7 @@ public:
     T getCell(unsigned int row, unsigned int column) {
         return matrix_[row][column];
     }
-
+    
     void addRow(vector<T> vector) {
         if (rows_ && (vector.size() != columns_)) {
             throw "cannot add vector to matrix - wrong number of columns";
@@ -51,6 +51,12 @@ public:
     vector<T> & operator[](unsigned int i) {
         return matrix_[i];
     }
+    
+    Matrix(string);
+    void addRow(string);
+    void setCell(Point &, int &);
+    void setValuesInVector(vector<string> &);
+    vector<int> & operator[](int);
 };
 
 #endif //OBJECTS_MATRIX_H_

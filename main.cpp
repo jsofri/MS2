@@ -11,7 +11,7 @@
 
 using namespace server_side;
 
-void foo() {
+/*void foo() {
   Matrix a("1,2,3,4\n");
   Point p(1,2);
   int x = 3;
@@ -25,10 +25,10 @@ void foo() {
   a.setCell(p, x);
 
   a[2][1] = 1;
-}
+}*/
 
 int main() {
-  foo();
+  //foo();
 
   /*MySerialServer sersev;
     try {
@@ -37,4 +37,6 @@ int main() {
     } catch (const char* e) {
         cerr << e << endl;
     }*/
+    
+    return 0;
 }

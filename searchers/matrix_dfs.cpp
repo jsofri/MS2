@@ -3,7 +3,7 @@
 //
 
 #include <objects/amdc.h>
-#include "dfs_matrix.h"
+#include "matrix_dfs.h"
 
 string MatrixDFS::search(Searchable<Point> searchable) {
     searchable_ = searchable;
