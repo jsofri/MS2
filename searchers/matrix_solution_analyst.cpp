@@ -6,10 +6,11 @@
 #include "matrix_solution_analyst.h"
 
 
-std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC> matrix, Point start, Point end) {
+std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC>& matrix, Point& start, Point& end) {
   AMDC amdc;
   Point path_point = end;
 
+  matrix_ = matrix;
   do {
     amdc = matrix.getCell(path_point);
 
@@ -25,7 +26,7 @@ std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC> matrix, Point start,
 void MatrixSolutionAnalyst::addWeight(double weight) {
   string token = "(";
 
-  token += to_string(weight);
+  token += to_string((int) weight);
   token += ")";
 
   addNodeInList(token);
@@ -35,12 +36,12 @@ void MatrixSolutionAnalyst::addDirection(Point & parent, Point & child) {
   string str = "";
 
   //no prior point tp parent => last point, no need for ", " precedence
-  if (parent != NO_POINT) {
+  if (matrix_.getCell(parent).parent != NO_POINT) {
     str += ", ";
   }
 
   if (parent.getX() == child.getX()) {
-    if (parent.getY() == parent.getY()) {
+    if (parent.getY() == child.getY()) {
       str += "None ";
     } else if (parent.getY() < child.getY()) {
       str += "Right ";
@@ -56,7 +57,7 @@ void MatrixSolutionAnalyst::addDirection(Point & parent, Point & child) {
   addNodeInList(str);
 }
 
-void MatrixSolutionAnalyst::addNodeInList(string str) {
+void MatrixSolutionAnalyst::addNodeInList(string& str) {
   list_.push_front(str);
 }
 

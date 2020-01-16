@@ -11,22 +11,24 @@
 #include "../objects/amdc.h"
 #include "../objects/matrix.h"
 #include "../searchable.h"
-#include "breadth_first_search.h"
+#include "bfs.h"
 
-class MatrixBFS : BreadthFirstSearch<Point, string> {
+class MatrixBFS : BFS<Point, string> {
  public:
   string search(Searchable<Point> &);
  private:
-  void init(Searchable<Point> &);
-  string runBFS(Searchable<Point> &);
-  void setMatrix(Searchable<Point> &);
+  void init();
+  void runBFS();
+  void setMatrix();
   void makeMatrix(unsigned int &, unsigned int &);
-  void setQueue(Searchable<Point> &);
+  void setQueue();
   Point dequeue();
   void enqueue(Point &);
   std::queue<Point *> * queue_;//each vertex is a point
   Matrix<AMDC> amdc_matrix_;  //first is parent, second is value
-  Point end_;
+  Point start_ = NO_POINT;
+  Point end_ = NO_POINT;
+  Searchable<Point> * searchable_;
 };
 
 #endif //MS2_SEARCHERS_MATRIX_BFS_H_

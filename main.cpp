@@ -2,44 +2,57 @@
 // Created by rony on 13/01/2020.
 //
 
-#include <searchers/matrix_dfs.h>
 #include "server/my_serial_server.h"
 #include "client_handler/my_test_client_handler.h"
 #include "objects/matrix.h"
+#include "MatrixAdapter.h"
 #include "iostream"
 #include "string"
+#include "matrix_searchable.h"
+#include "searchers/matrix_dfs.h"
+#include "searchers/matrix_bfs.h"
 #define PORT 5402
+#define RANK 4
 
 using namespace server_side;
 
-/*void foo() {
-  Matrix a("1,2,3,4\n");
-  Point p(1,2);
-  int x = 3;
-  try {
-    a.addRow("5,6,7,-8");
-    a.addRow("-9, -10, 11, 12");
-  } catch (const char * c) {
-    cerr << c << endl;
-  }
-  3+5/2+4;
-  a.setCell(p, x);
+void foo() {
+    MatrixAdapter matrix_adapter;
+    string str = "";
+    int x, i, j;
 
-  a[2][1] = 1;
-}*/
+    for (i = 0; i < RANK; i++) {
+        for (j = 0; j < RANK; j++) {
+            x = rand() % 100;         // v1 in the range 0 to 99
+            str += to_string(x);
+            str+=",";
+        }
+        matrix_adapter.addRow(str);
+        cout << str << endl;
+        str = "";
+    }
+
+    Matrix<int> matrix = matrix_adapter.getMatrix();
+
+    MatrixSearchable matrix_searchable(&matrix);
+
+    MatrixBFS matrix_bfs;
+
+    str = matrix_bfs.search(matrix_searchable);
+
+    cout << str << endl;
+}
 
 int main() {
+    foo();
 
-    MatrixDFS mdfs;
-  //foo();
+    /*MySerialServer sersev;
+      try {
+          sersev.open(PORT, new MyTestClientHandler());
+          sersev.close();
+      } catch (const char* e) {
+          cerr << e << endl;
+      }*/
 
-  /*MySerialServer sersev;
-    try {
-        sersev.open(PORT, new MyTestClientHandler());
-        sersev.close();
-    } catch (const char* e) {
-        cerr << e << endl;
-    }*/
-    
     return 0;
 }
