@@ -44,7 +44,9 @@ class Matrix {
   }
 
   void addRow(vector<T> vector) {
-    if (rows_ && (vector.size() != columns_)) {
+    if (!columns_) {
+      columns_ = vector.size();
+    } else if (rows_ && (vector.size() != columns_)) {
       throw "cannot add vector to matrix - wrong number of columns";
     }
 

@@ -16,7 +16,6 @@
 
 class MatrixAdapter {
  public:
-  MatrixAdapter();
   void addRow(string);
   Matrix<int> getMatrix();
  private:

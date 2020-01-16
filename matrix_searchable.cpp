@@ -28,10 +28,10 @@ std::list<Point> MatrixSearchable::getAllPossibleStates(Point point) {
   x = point.getX();
   y = point.getY();
 
-  if (x > 0 && (x < (end_.getX() - 1))) {
-    if ((y > 0) && (y < (end_.getY() - 1))) {
+  if (x > 0 && (x < end_.getX())) {
+    if ((y > 0) && (y < end_.getY())) {
       addStates(points_list, true,true,true,true,x,y);
-    } else if (y == end_.getY() - 1) {
+    } else if (y == end_.getY()) {
       addStates(points_list, false,true,true,true,x,y);
     } else if (y == 0) {
       addStates(points_list, true,false,true,true,x,y);
@@ -39,22 +39,22 @@ std::list<Point> MatrixSearchable::getAllPossibleStates(Point point) {
       throw "undefined Point object";
     }
   } else if (x == 0) {
-    if ((y > 0) && (y < (end_.getY() - 1))) {
+    if ((y > 0) && (y < end_.getY())) {
       addStates(points_list, true,true,false,true,x,y);
-    } else if (y == end_.getY() - 1) {
+    } else if (y == end_.getY()) {
       addStates(points_list, false,true,false,true,x,y);
     } else if (y == 0) {
       addStates(points_list, true,false,false,true,x,y);
     } else {
       throw "undefined Point object";
     }
-  } else if (x == (end_.getX() - 1)) {
-    if ((y > 0) && (y < (end_.getY() - 1))) {
+  } else if (x == end_.getX()) {
+    if ((y > 0) && (y < end_.getY())) {
       addStates(points_list, true,true,true,false,x,y);
     } else if (y == end_.getY()) {
       addStates(points_list, false,true,true,false,x,y);
     } else if (y == 0) {
-      addStates(points_list, true,true,false,false,x,y);
+      addStates(points_list, true,false,true,false,x,y);
     } else {
       throw "undefined Point object";
     }
@@ -67,19 +67,19 @@ std::list<Point> MatrixSearchable::getAllPossibleStates(Point point) {
 
 void MatrixSearchable::addStates(std::list<Point>& list, bool right,
                bool left, bool up, bool down, unsigned int & x, unsigned int & y) {
-  if (right) {
+  if (right && matrix_->getCell(Point(x, y + 1)) != -1) {
     list.push_back(Point(x, y + 1));
   }
 
-  if (left) {
+  if (left && matrix_->getCell(Point(x, y - 1)) != -1) {
     list.push_back(Point(x, y - 1));
   }
 
-  if(up) {
+  if(up && matrix_->getCell(Point(x - 1, y)) != -1) {
     list.push_back(Point(x-1, y));
   }
 
-  if (down) {
+  if (down && matrix_->getCell(Point(x + 1, y)) != -1) {
     list.push_back(Point(x + 1, y));
   }
 }

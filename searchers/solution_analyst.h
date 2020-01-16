@@ -12,7 +12,7 @@
 template <typename T, typename U, typename S>
 class SolutionAnalyst {
  public:
-  virtual S getSolution(U, T, T) = 0;
+  virtual S getSolution(U&, T&, T&) = 0;
 };
 
 #endif //SEARCHERS_SOLUTION_ANALYST_H_
