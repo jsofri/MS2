@@ -39,6 +39,10 @@ class Matrix {
     return matrix_[row][column];
   }
 
+  T getCell(Point point) {
+    return matrix_[point.getX()][point.getY()];
+  }
+
   void addRow(vector<T> vector) {
     if (rows_ && (vector.size() != columns_)) {
       throw "cannot add vector to matrix - wrong number of columns";
@@ -46,6 +50,12 @@ class Matrix {
 
     matrix_.push_back(vector);
     rows_++;
+  }
+
+  pair<unsigned int, unsigned int> getSize() {
+    auto sizePair = std::pair<unsigned int, unsigned int>(rows_, columns_);
+
+    return sizePair;
   }
 
   vector<T> & operator[](unsigned int i) {

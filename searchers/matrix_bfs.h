@@ -8,9 +8,10 @@
 
 #include <queue>
 #include "../objects/point.h"
+#include "../objects/amdc.h"
+#include "../objects/matrix.h"
 #include "../searchable.h"
 #include "breadth_first_search.h"
-
 
 class MatrixBFS : BreadthFirstSearch<Point, string> {
  public:
@@ -18,9 +19,14 @@ class MatrixBFS : BreadthFirstSearch<Point, string> {
  private:
   void init(Searchable<Point> &);
   string runBFS(Searchable<Point> &);
-  string stringFromSolution();
-  std::queue<Point> * queue_;//each vertex is a point
-  Matrix<AMDC> parent_and_value_;  //first is parent, second is value
+  void setMatrix(Searchable<Point> &);
+  void makeMatrix(unsigned int &, unsigned int &);
+  void setQueue(Searchable<Point> &);
+  Point dequeue();
+  void enqueue(Point &);
+  std::queue<Point *> * queue_;//each vertex is a point
+  Matrix<AMDC> amdc_matrix_;  //first is parent, second is value
+  Point end_;
 };
 
 #endif //MS2_SEARCHERS_MATRIX_BFS_H_

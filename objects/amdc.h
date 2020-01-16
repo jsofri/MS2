@@ -13,6 +13,7 @@
 typedef struct AMDC {
   Point parent  = NO_POINT;
   double weight = HUGE_VAL;
+  bool visited = false;
 } AMDC;
 
 #endif //MS2_OBJECTS_AMDC_H_
