@@ -15,48 +15,52 @@ using namespace std;
 
 template <typename T>
 class Matrix {
-private:
-    vector<vector<T>> matrix_;
-    unsigned int rows_ = 0;
-    unsigned int columns_ = 0;
-public:
-    Matrix() = default;
+ private:
+  vector<vector<T>> matrix_;
+  unsigned int rows_ = 0;
+  unsigned int columns_ = 0;
+ public:
+  Matrix() = default;
 
-    Matrix(vector<T> vector) {
-        matrix_.push_back(vector);
-        columns_ = vector.size();
+  Matrix(vector<T> vector) {
+    matrix_.push_back(vector);
+    columns_ = vector.size();
+  }
+
+  void setCell(Point & p , T & value) {
+    if (p.getY() >= columns_ || p.getX() >= columns_) {
+      throw "can't put value in cell";
     }
 
-    void setCell(Point & p , T & value) {
-        if (p.getY() >= columns_ || p.getX() >= columns_) {
-            throw "can't put value in cell";
-        }
+    matrix_[p.getX()][p.getY()] = value;
+  }
 
-        matrix_[p.getX()][p.getY()] = value;
+  T getCell(unsigned int row, unsigned int column) {
+    return matrix_[row][column];
+  }
+
+  T getCell(Point point) {
+    return matrix_[point.getX()][point.getY()];
+  }
+
+  void addRow(vector<T> vector) {
+    if (rows_ && (vector.size() != columns_)) {
+      throw "cannot add vector to matrix - wrong number of columns";
     }
 
-    T getCell(unsigned int row, unsigned int column) {
-        return matrix_[row][column];
-    }
-    
-    void addRow(vector<T> vector) {
-        if (rows_ && (vector.size() != columns_)) {
-            throw "cannot add vector to matrix - wrong number of columns";
-        }
+    matrix_.push_back(vector);
+    rows_++;
+  }
 
-        matrix_.push_back(vector);
-        rows_++;
-    }
+  pair<unsigned int, unsigned int> getSize() {
+    auto sizePair = std::pair<unsigned int, unsigned int>(rows_, columns_);
 
-    vector<T> & operator[](unsigned int i) {
-        return matrix_[i];
-    }
-    
-    Matrix(string);
-    void addRow(string);
-    void setCell(Point &, int &);
-    void setValuesInVector(vector<string> &);
-    vector<int> & operator[](int);
+    return sizePair;
+  }
+
+  vector<T> & operator[](unsigned int i) {
+    return matrix_[i];
+  }
 };
 
 #endif //OBJECTS_MATRIX_H_
