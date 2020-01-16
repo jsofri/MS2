@@ -11,7 +11,7 @@
 
 template <typename P, typename S>
 class BreadthFirstSearch : public Searcher<P, S> {
-  virtual S search(P) = 0;
+    virtual S search(P) = 0;
 };
 
 #endif //BFS_ALGORITHM_H_

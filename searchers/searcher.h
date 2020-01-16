@@ -11,7 +11,7 @@
 
 template <typename P, typename S>
 class Searcher {
- public:
+public:
     virtual S search(Searchable<P> &) = 0;
 };
 

@@ -48,7 +48,12 @@ void MySerialServer::run(int & port, ClientHandler* & client_handler){
         throw "Error during listening command";
     }
 
-    //Server is now listening
+    // set the time out
+    struct timeval tv;
+    tv.tv_sec = TIME_OUT;
+    setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+
+    // Server is now accepting clients
     acceptClients(socketfd, address, client_handler);
 
     // close listening server socket
@@ -58,10 +63,8 @@ void MySerialServer::run(int & port, ClientHandler* & client_handler){
 
 void MySerialServer::acceptClients(int socketfd, sockaddr_in& address, ClientHandler* client_handler) {
     int client_socket;
-    auto diff = chrono::duration<double, std::milli>(0);
-    auto start = chrono::steady_clock::now();
 
-    while (keep_running_ && diff < chrono::duration<double, std::milli>(TIME_OUT * 1000)) {
+    while (keep_running_) {
         // accept client
         auto s = (struct sockaddr *) &address;
         auto m = (socklen_t *) &address;
@@ -69,12 +72,10 @@ void MySerialServer::acceptClients(int socketfd, sockaddr_in& address, ClientHan
 
         if (client_socket != -1) {
             client_handler -> handleClient(client_socket);
-            start = chrono::steady_clock::now();
         } else {
             perror("Accept error");
         }
 
-        diff = chrono::steady_clock::now() - start;
         cout << "Client ended the connection" << endl;
 
     }
