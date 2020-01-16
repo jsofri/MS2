@@ -9,7 +9,7 @@
 
 class Point {
  public:
-  Point(unsigned int x, unsigned int y) : x_(x), y_(y) {}
+  Point(int x, int y) : x_(x), y_(y) {}
   unsigned int getX();
   unsigned int getY();
   bool operator==(Point);

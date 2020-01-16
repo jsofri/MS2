@@ -17,13 +17,14 @@
 
 class MatrixSolutionAnalyst : public SolutionAnalyst <Point, Matrix<AMDC>, std::string> {
  public:
-  std::string getSolution(Matrix<AMDC>, Point, Point);
+  std::string getSolution(Matrix<AMDC>&, Point&, Point&);
  private:
-  void addNodeInList(string);
+  void addNodeInList(string&);
   void addDirection(Point &, Point &);
   void addWeight(double);
   string getString();
   list<string> list_;
+  Matrix<AMDC> matrix_;
 };
 
-#endif //MS2_SEARCHERS_MATRIX_SOLUTION_ANALYST_H_
+#endif //SEARCHERS_MATRIX_SOLUTION_ANALYST_H_
