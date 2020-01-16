@@ -15,3 +15,7 @@ unsigned int Point::getY() {
 bool Point::operator==(Point p) {
   return ((x_ == p.x_) && (y_ == p.y_));
 }
+
+bool Point::operator!=(Point p) {
+  return ((x_ != p.x_) || (y_ != p.y_));
+}
