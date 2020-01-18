@@ -13,8 +13,9 @@
 
 class MatrixSearchable : public Searchable<Point> {
  public:
-  MatrixSearchable(Matrix<int> *);
+  explicit MatrixSearchable(Matrix<int> *);
   Point getInitialState();
+  Point getGoalState();
   bool isGoalState(Point);
   std::list<Point> getAllPossibleStates(Point);
   std::pair<unsigned int, unsigned int> getSize();

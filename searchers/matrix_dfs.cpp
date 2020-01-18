@@ -5,9 +5,9 @@
 #include "matrix_dfs.h"
 
 string MatrixDFS::search(Searchable<Point>& searchable) {
-  MatrixSolutionAnalyst msa;
-  string solution;
-  searchable_ = &searchable;
+    MatrixSolutionAnalyst msa;
+    string solution;
+    searchable_ = &searchable;
 
     // initialize the path matrix
     initPathMatrix();
@@ -25,7 +25,7 @@ string MatrixDFS::search(Searchable<Point>& searchable) {
     printMatrix();
 
     // return solution
-    solution = msa.getSolution(path_matrix_, initial, *end_);
+    solution = msa.getSolution(path_matrix_, initial, *end_, *searchable_);
     return solution;
 }
 

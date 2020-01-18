@@ -5,6 +5,8 @@
 #ifndef SEARCHERS_SOLUTION_ANALYST_H_
 #define SEARCHERS_SOLUTION_ANALYST_H_
 
+#include "../searchables/searchable.h"
+
 //get some kind of solution - T, goal and start state - U
 //return a specific output from it - S.
 //e.g. get matrix of solution - T, get goal and start state - U
@@ -12,7 +14,7 @@
 template <typename T, typename U, typename S>
 class SolutionAnalyst {
  public:
-  virtual S getSolution(U&, T&, T&) = 0;
+  virtual S getSolution(U&, T&, T&, Searchable<T>&) = 0;
 };
 
 #endif //SEARCHERS_SOLUTION_ANALYST_H_

@@ -22,6 +22,10 @@ bool MatrixSearchable::isGoalState(Point point) {
   return point == end_;
 }
 
+Point MatrixSearchable::getGoalState() {
+  return end_;
+}
+
 std::list<Point> MatrixSearchable::getAllPossibleStates(Point point) {
   list<Point> points_list;
   unsigned int x, y;

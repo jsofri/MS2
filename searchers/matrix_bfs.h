@@ -10,7 +10,7 @@
 #include "../objects/point.h"
 #include "../objects/amdc.h"
 #include "../objects/matrix.h"
-#include "../searchable.h"
+#include "searchables/searchable.h"
 #include "bfs.h"
 
 class MatrixBFS : BFS<Point, string> {

@@ -15,7 +15,7 @@ string MatrixBFS::search(Searchable<Point> & searchable) {
 
   runBFS();
 
-  solution = msa.getSolution(amdc_matrix_, start_, end_);
+  solution = msa.getSolution(amdc_matrix_, start_, end_, searchable);
 
   delete(queue_);
 
