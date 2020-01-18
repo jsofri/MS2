@@ -11,6 +11,7 @@
 #include "matrix_searchable.h"
 #include "searchers/matrix_dfs.h"
 #include "searchers/matrix_bfs.h"
+#include "searchers/matrix_best_fs.h"
 #define PORT 5402
 #define RANK 4
 
@@ -36,9 +37,10 @@ void foo() {
 
   MatrixSearchable matrix_searchable(&matrix);
 
-  MatrixBFS matrix_bfs;
+  //MatrixBFS matrix_bfs;
+  MatrixBestFS matrix_best_fs;
 
-  str = matrix_bfs.search(matrix_searchable);
+  str = matrix_best_fs.search(matrix_searchable);
 
   cout << str << endl;
 }

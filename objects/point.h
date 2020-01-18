@@ -5,6 +5,9 @@
 #ifndef MS2_OBJECTS_POINT_H_
 #define MS2_OBJECTS_POINT_H_
 
+#include "string"
+
+
 #define NO_POINT Point(-1, -1)
 
 class Point {
@@ -14,6 +17,8 @@ class Point {
   unsigned int getY();
   bool operator==(Point);
   bool operator!=(Point);
+  //bool operator=(Point);
+  std::string toString();
  private:
   unsigned int x_;
   unsigned int y_;
