@@ -10,25 +10,25 @@
 #include "../objects/point.h"
 #include "../objects/amdc.h"
 #include "../objects/matrix.h"
-#include "searchables/searchable.h"
+#include "../searchables/searchable.h"
 #include "searcher.h"
 
 class MatrixBFS : Searcher<Point, string> {
  public:
   string search(Searchable<Point> &);
  private:
-  void init();
-  void runBFS();
-  void setMatrix();
+  void init(Searchable<Point> &);
+  void runBFS(Searchable<Point> &);
+  void setMatrix(Searchable<Point> &);
   void makeMatrix(unsigned int &, unsigned int &);
-  void setQueue();
+  void setQueue(Searchable<Point> &);
   Point dequeue();
   void enqueue(Point &);
   std::queue<Point *> * queue_;//each vertex is a point
   Matrix<AMDC> amdc_matrix_;  //first is parent, second is value
   Point start_ = NO_POINT;
   Point end_ = NO_POINT;
-  Searchable<Point> * searchable_;
+  //Searchable<Point> * searchable_;
 };
 
 #endif //MS2_SEARCHERS_MATRIX_BFS_H_

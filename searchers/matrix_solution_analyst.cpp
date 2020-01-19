@@ -38,15 +38,6 @@ std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC>& matrix, Point& star
     return result;
 }
 
-void MatrixSolutionAnalyst::addWeight(double weight) {
-  string token = "(";
-
-  token += to_string((int) weight);
-  token += ")";
-
-  addNodeInList(token);
-}
-
 void MatrixSolutionAnalyst::addDirection(Point & parent, Point & child) {
   string str = "";
 
@@ -70,21 +61,4 @@ void MatrixSolutionAnalyst::addDirection(Point & parent, Point & child) {
   }
 
   addNodeInList(str);
-}
-
-void MatrixSolutionAnalyst::addNodeInList(string& str) {
-  list_.push_front(str);
-}
-
-string MatrixSolutionAnalyst::getString() {
-  string sequence;
-  stringstream string_stream;
-
-  for (auto node : list_) {
-    string_stream << node;
-  }
-
-  sequence = string_stream.str();
-
-  return sequence;
 }

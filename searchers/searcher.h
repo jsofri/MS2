@@ -5,9 +5,7 @@
 #ifndef SEARCHER_H_
 #define SEARCHER_H_
 
-
-#include "searchables/searchable.h"
-
+#include "../searchables/searchable.h"
 
 template <typename P, typename S>
 class Searcher {

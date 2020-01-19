@@ -5,16 +5,18 @@
 #ifndef SEARCHERS_SOLUTION_ANALYST_H_
 #define SEARCHERS_SOLUTION_ANALYST_H_
 
-#include "../searchables/searchable.h"
+#include <list>
+#include <string>
+#include <sstream>
 
-//get some kind of solution - T, goal and start state - U
-//return a specific output from it - S.
-//e.g. get matrix of solution - T, get goal and start state - U
-//and return a string - S
-template <typename T, typename U, typename S>
+using namespace std;
+
 class SolutionAnalyst {
- public:
-  virtual S getSolution(U&, T&, T&, Searchable<T>&) = 0;
+ protected:
+  void addWeight(double);
+  void addNodeInList(string &);
+  string getString();
+  list<string> list_;
 };
 
 #endif //SEARCHERS_SOLUTION_ANALYST_H_
