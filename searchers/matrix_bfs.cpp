@@ -9,11 +9,9 @@ string MatrixBFS::search(Searchable<Point> & searchable) {
   MatrixSolutionAnalyst msa;
   string solution;
 
-  searchable_ = &searchable;
+  init(searchable);
 
-  init();
-
-  runBFS();
+  runBFS(searchable);
 
   solution = msa.getSolution(amdc_matrix_, start_, end_);
 
@@ -22,18 +20,18 @@ string MatrixBFS::search(Searchable<Point> & searchable) {
   return solution;
 }
 
-void MatrixBFS::init() {
-  start_ = searchable_-> getInitialState();
+void MatrixBFS::init(Searchable<Point> & searchable) {
+  start_ = searchable.getInitialState();
 
-  setMatrix();
-  setQueue();
+  setMatrix(searchable);
+  setQueue(searchable);
   amdc_matrix_[0][0].weight = 0;
   amdc_matrix_[0][0].visited = true;
 }
 
-void MatrixBFS::setMatrix() {
+void MatrixBFS::setMatrix(Searchable<Point> & searchable) {
   int n, m;
-  pair<unsigned int, unsigned int> pair = searchable_->getSize();
+  pair<unsigned int, unsigned int> pair = searchable.getSize();
 
   makeMatrix(pair.first, pair.second);
 }
@@ -54,8 +52,8 @@ void MatrixBFS::makeMatrix(unsigned int & n, unsigned int & m) {
   }
 }
 
-void MatrixBFS::setQueue() {
-  Point start = searchable_->getInitialState();
+void MatrixBFS::setQueue(Searchable<Point> & searchable) {
+  Point start = searchable.getInitialState();
   queue_ = new queue<Point *>;
   enqueue(start);
 }
@@ -74,12 +72,12 @@ Point MatrixBFS::dequeue() {
 
   return point;
 }
-void MatrixBFS::runBFS() {
+void MatrixBFS::runBFS(Searchable<Point> & searchable) {
 
   while (!queue_->empty()) {
     Point point = dequeue();
 
-    list<Point> adjs = searchable_->getAllPossibleStates(point);
+    list<Point> adjs = searchable.getAllPossibleStates(point);
 
     for (Point adjacent : adjs) {
 
@@ -94,12 +92,12 @@ void MatrixBFS::runBFS() {
         //update weight of adjacent
         amdc_matrix_[adjacent.getX()][adjacent.getY()].weight =
             amdc_matrix_[point.getX()][point.getY()].weight
-            + searchable_->getCost(adjacent);
+            + searchable.getCost(adjacent);
 
         enqueue(adjacent);
       }
 
-      if (searchable_->isGoalState(point)) {
+      if (searchable.isGoalState(point)) {
         end_ = point;
       }
     }

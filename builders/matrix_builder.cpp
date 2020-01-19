@@ -3,17 +3,17 @@
 //
 
 
-#include "MatrixAdapter.h"
+#include "matrix_builder.h"
 
 
-void MatrixAdapter::addRow(string row) {
+void MatrixBuilder::addRow(string row) {
   vector<string> string_vector;
 
   string_vector = Stringer::doRegex(row, REGEX);
   setValuesInVector(string_vector);
 }
 
-void MatrixAdapter::setValuesInVector(vector<string> & string_vector) {
+void MatrixBuilder::setValuesInVector(vector<string> & string_vector) {
   vector<int> int_vector;
 
   for (auto num_string : string_vector) {
@@ -29,6 +29,6 @@ void MatrixAdapter::setValuesInVector(vector<string> & string_vector) {
   int_matrix_.addRow(int_vector);
 }
 
-Matrix<int> MatrixAdapter::getMatrix() {
+Matrix<int> MatrixBuilder::getMatrix() {
   return int_matrix_;
 }

@@ -27,6 +27,14 @@ class Matrix {
     columns_ = vector.size();
   }
 
+  void setCell(Point & p , T value) {
+    if (p.getY() >= columns_ || p.getX() >= columns_) {
+      throw "can't put value in cell";
+    }
+
+    matrix_[p.getX()][p.getY()] = value;
+  }
+
   void setCell(Point & p , T & value) {
     if (p.getY() >= columns_ || p.getX() >= columns_) {
       throw "can't put value in cell";

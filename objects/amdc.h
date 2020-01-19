@@ -11,6 +11,7 @@
 //AMDC is Algorithem Matrix Data Cell - we use it for BFS, DFS etc.
 //initialized to have no parent point and infinity value
 typedef struct AMDC {
+  Point myself = NO_POINT;
   Point parent  = NO_POINT;
   double weight = HUGE_VAL;
   bool visited = false;

@@ -6,13 +6,14 @@
 #define MS2_MATRIX_DFS_H
 
 
-#include "dfs.h"
 #include "../objects/matrix.h"
 #include "../objects/amdc.h"
 #include "matrix_solution_analyst.h"
+#include "../searchables/searchable.h"
+#include "searcher.h"
 
 
-class MatrixDFS: public DFS<Point, string> {
+class MatrixDFS : Searcher<Point, string> {
  public:
   string search(Searchable<Point> &) override;
   ~MatrixDFS();
