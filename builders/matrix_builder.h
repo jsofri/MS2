@@ -16,6 +16,7 @@
 //string contains int seperated by commas
 //e.g. "1, -2, 3, 4, 5"
 //when you finished adding all rows, call getMatrix()
+
 class MatrixBuilder {
  public:
   void addRow(string);

@@ -10,6 +10,8 @@
 #include "../objects/matrix.h"
 #include "../objects/amdc.h"
 #include "matrix_solution_analyst.h"
+#include "../searchables/searchable.h"
+#include "searcher.h"
 
 
 class MatrixDFS: public Searcher<Point, string> {

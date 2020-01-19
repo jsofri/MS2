@@ -17,15 +17,11 @@
 #include <searchables/searchable.h>
 
 
-class MatrixSolutionAnalyst : public SolutionAnalyst <Point, Matrix<AMDC>, std::string> {
+class MatrixSolutionAnalyst : public SolutionAnalyst {
  public:
   std::string getSolution(Matrix<AMDC>&, Point&, Point&, Searchable<Point>&);
  private:
-  void addNodeInList(string&);
   void addDirection(Point &, Point &);
-  void addWeight(double);
-  string getString();
-  list<string> list_;
   Matrix<AMDC> matrix_;
   unordered_map<string, bool> point_map_;
 };

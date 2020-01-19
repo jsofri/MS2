@@ -7,8 +7,8 @@
 
 
 #include "searchable.h"
-#include "objects/point.h"
-#include "objects/matrix.h"
+#include "../objects/point.h"
+#include "../objects/matrix.h"
 
 
 class MatrixSearchable : public Searchable<Point> {
@@ -22,9 +22,8 @@ class MatrixSearchable : public Searchable<Point> {
   int getCost(Point);
   void removeAllWalls(list<Point> points_list);
 
-private:
-  void addStates(std::list<Point>&, bool , bool, bool, bool, unsigned int &,
-                 unsigned int &);
+ private:
+  void addStates(std::list<Point>&, bool , bool, bool, bool, unsigned int &, unsigned int &);
   Matrix<int> * matrix_;
   Point end_ = NO_POINT;
 };

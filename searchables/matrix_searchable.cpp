@@ -65,7 +65,6 @@ std::list<Point> MatrixSearchable::getAllPossibleStates(Point point) {
   } else {
     throw "undefined Point object";
   }
-
   // remove all walls
   removeAllWalls(points_list);
 

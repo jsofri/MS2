@@ -12,6 +12,7 @@
 #include "searchers/matrix_dfs.h"
 #include "searchers/matrix_bfs.h"
 #include "searchers/matrix_astar.h"
+#include "searchers/matrix_best_fs.h"
 #define PORT 5402
 #define RANK 10
 #define RAND 3
@@ -19,7 +20,7 @@
 using namespace server_side;
 
 void foo() {
-    MatrixAdapter matrix_adapter;
+    MatrixBuilder matrix_builder;
     string str = "";
     int x, i, j;
 
@@ -29,7 +30,7 @@ void foo() {
             str += to_string(x);
             str+=",";
         }
-        matrix_adapter.addRow(str);
+        matrix_builder.addRow(str);
         cout << str << endl;
         str = "";
     }
@@ -38,9 +39,12 @@ void foo() {
 
     MatrixSearchable matrix_searchable(&matrix);
 
-    MatrixAStar matrix_astar;
-
-    str = matrix_astar.search(matrix_searchable);
+  
+    //MatrixBFS matrix;
+    //MatrixAStar matrix;
+    MatrixBestFS matrix;
+  
+    str = matrix.search(matrix_searchable);
 
     cout << str << endl;
 }
