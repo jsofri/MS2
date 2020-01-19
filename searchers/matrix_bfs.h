@@ -11,9 +11,9 @@
 #include "../objects/amdc.h"
 #include "../objects/matrix.h"
 #include "searchables/searchable.h"
-#include "bfs.h"
+#include "searcher.h"
 
-class MatrixBFS : BFS<Point, string> {
+class MatrixBFS : Searcher<Point, string> {
  public:
   string search(Searchable<Point> &);
  private:

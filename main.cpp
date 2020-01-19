@@ -5,7 +5,7 @@
 #include "server/my_serial_server.h"
 #include "client_handler/my_test_client_handler.h"
 #include "objects/matrix.h"
-#include "adapters/MatrixAdapter.h"
+#include "builders/matrix_builder.h"
 #include "iostream"
 #include "string"
 #include "searchables/matrix_searchable.h"
@@ -25,7 +25,7 @@ void foo() {
 
     for (i = 0; i < RANK; i++) {
         for (j = 0; j < RANK; j++) {
-            x = rand() % RAND;         // v1 in the range 0 to 99
+            x = rand() % RAND;         // v1 in the range 0 to RAND
             str += to_string(x);
             str+=",";
         }

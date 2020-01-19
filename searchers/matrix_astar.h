@@ -6,7 +6,7 @@
 #define MS2_MATRIX_ASTAR_H
 
 #include <objects/point.h>
-#include "astar.h"
+#include "searcher.h"
 #include <string>
 #include <queue>
 #include <unordered_map>
@@ -16,7 +16,7 @@
 
 using namespace std;
 
-class MatrixAStar: public AStar<Point, string> {
+class MatrixAStar: public Searcher<Point, string> {
 public:
     MatrixAStar() = default;
     string search(Searchable<Point> &) override;
