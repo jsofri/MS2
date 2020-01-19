@@ -10,10 +10,10 @@
  * @param vector "close" of best first search algorithm after end of algorithm
  * @return string that represents the steps for the goal state
  */
-string VectorSolutionAnalyst::getSolution(vector<BFSDN> vector) {
+string VectorSolutionAnalyst::getSolution(vector<AMDC> vector) {
   int i, weight = sumWeight(vector);
   string str;
-  Point next = vector.back().point;
+  Point next = vector.back().myself;
 
   if (vector.size() == 1) {
     string solution = "None";
@@ -21,10 +21,10 @@ string VectorSolutionAnalyst::getSolution(vector<BFSDN> vector) {
     return solution;
   }
 
-  start_ = vector[0].point;
+  start_ = vector[0].myself;
 
   for (i = vector.size() - 1; i > 0; i--) {
-    if (next == vector[i].point) {
+    if (next == vector[i].myself) {
       addWeight(weight);
       addDirection(vector[i]);
       next = vector[i].parent;
@@ -40,23 +40,23 @@ string VectorSolutionAnalyst::getSolution(vector<BFSDN> vector) {
  *
  * @param bfsdn a BFSDN struct
  */
-void VectorSolutionAnalyst::addDirection(BFSDN bfsdn) {
+void VectorSolutionAnalyst::addDirection(AMDC amdc) {
   string str = ", ";
 
-  if (bfsdn.parent == start_) {
-    handleLastNode(bfsdn);
+  if (amdc.parent == start_) {
+    handleLastNode(amdc);
     return;
   }
 
-  if (bfsdn.parent.getX() == bfsdn.point.getX()) {
-    if (bfsdn.parent.getY() == bfsdn.point.getY()) {
+  if (amdc.parent.getX() == amdc.myself.getX()) {
+    if (amdc.parent.getY() == amdc.myself.getY()) {
       str += "None ";
-    } else if (bfsdn.parent.getY() < bfsdn.point.getY()) {
+    } else if (amdc.parent.getY() < amdc.myself.getY()) {
       str += "Right ";
     } else {
       str += "Left ";
     }
-  } else if (bfsdn.parent.getX() > bfsdn.point.getX()){
+  } else if (amdc.parent.getX() > amdc.myself.getX()){
     str += "Up ";
   } else {
     str += "Down ";
@@ -68,10 +68,10 @@ void VectorSolutionAnalyst::addDirection(BFSDN bfsdn) {
 /**
  * helper method to know the first step in algorithm.
  *
- * @param bfsdn BFSDN of the second vertex in the solution.
+ * @param amdc AMDC struct of the second vertex in the solution.
  */
-void VectorSolutionAnalyst::handleLastNode(BFSDN bfsdn) {
-  Point point = bfsdn.point;
+void VectorSolutionAnalyst::handleLastNode(AMDC amdc) {
+  Point point = amdc.myself;
   string str = "";
 
   if (point.getX() == start_.getX())
@@ -103,12 +103,12 @@ void VectorSolutionAnalyst::handleLastNode(BFSDN bfsdn) {
  * @param vector "close" vector from best first search algorithm.
  * @return double - weight of path.
  */
-double VectorSolutionAnalyst::sumWeight(vector<BFSDN> & vector) {
+double VectorSolutionAnalyst::sumWeight(vector<AMDC> & vector) {
   int i, weight = vector.back().weight;
   Point next = vector.back().parent;
 
   for (i = vector.size() - 1; i >= 0; i--) {
-    if (vector[i].point == next) {
+    if (vector[i].myself == next) {
       next = vector[i].parent;
       weight += vector[i].weight;
     }

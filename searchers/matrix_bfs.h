@@ -10,10 +10,10 @@
 #include "../objects/point.h"
 #include "../objects/amdc.h"
 #include "../objects/matrix.h"
-#include "../searchable.h"
-#include "bfs.h"
+#include "../searchables/searchable.h"
 
-class MatrixBFS : BFS<Point, string> {
+
+class MatrixBFS {
  public:
   string search(Searchable<Point> &);
  private:

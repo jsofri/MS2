@@ -39,20 +39,20 @@ void MatrixBestFS::setMatrix(Searchable<Point> & searchable) {
 }
 
 void MatrixBestFS::runBestFS(Searchable<Point> & searchable) {
-  while (!searchable.isGoalState(open_.front().point)) {
+  while (!searchable.isGoalState(open_.front().myself)) {
     list<Point> adjacents;
-    BFSDN curr_bfsdn = open_.front();
+    AMDC curr_amdc = open_.front();
 
     open_.erase(open_.begin());
-    close_.push_back(curr_bfsdn);
+    close_.push_back(curr_amdc);
 
-    adjacents = searchable.getAllPossibleStates(curr_bfsdn.point);
+    adjacents = searchable.getAllPossibleStates(curr_amdc.myself);
 
     for (auto point : adjacents) {
 
       //not visited in point
       if (!matrix_.getCell(point)) {
-        addToOpen(searchable, curr_bfsdn.point, point);
+        addToOpen(searchable, curr_amdc.myself, point);
       }
     }
 
@@ -63,17 +63,17 @@ void MatrixBestFS::runBestFS(Searchable<Point> & searchable) {
 }
 
 void MatrixBestFS::addToOpen(Searchable<Point> & searchable, Point & parent, Point & child) {
-  BFSDN bfsdn;
+  AMDC amdc;
 
-  bfsdn.point = child;
-  bfsdn.parent = parent;
-  bfsdn.weight = searchable.getCost(child);
+  amdc.myself = child;
+  amdc.parent = parent;
+  amdc.weight = searchable.getCost(child);
   matrix_.setCell(child, true);
 
-  open_.push_back(bfsdn);
+  open_.push_back(amdc);
 }
 
 void MatrixBestFS::sortOpenList() {
-  auto compare = [](BFSDN a, BFSDN b) {return a.weight < b.weight; };
+  auto compare = [](AMDC a, AMDC b) {return a.weight < b.weight; };
   std::sort(std::begin(open_), std::end(open_), compare);
 }

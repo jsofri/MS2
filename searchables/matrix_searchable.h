@@ -7,8 +7,8 @@
 
 
 #include "searchable.h"
-#include "objects/point.h"
-#include "objects/matrix.h"
+#include "../objects/point.h"
+#include "../objects/matrix.h"
 
 
 class MatrixSearchable : public Searchable<Point> {

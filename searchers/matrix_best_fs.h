@@ -11,7 +11,7 @@
 #include "queue"
 #include "vector_solution_analyst.h"
 #include "../objects/point.h"
-#include "../objects/bfsdn.h"
+#include "../objects/amdc.h"
 #include "../objects/matrix.h"
 
 
@@ -28,8 +28,8 @@ class MatrixBestFS : BestFS<Point, std::string>{
   void sortOpenList();
   void addToOpen(Searchable<Point> &, Point &, Point &);
   Matrix<bool> matrix_;
-  vector<BFSDN> open_;
-  vector<BFSDN> close_;
+  vector<AMDC> open_;
+  vector<AMDC> close_;
   Point start_ = NO_POINT;
   Point end_ = NO_POINT;;
 };

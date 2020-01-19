@@ -6,9 +6,9 @@
 #define MATRIXADAPTER_H_
 
 
-#include "objects/matrix.h"
+#include "../objects/matrix.h"
 #include "string"
-#include "util/stringer.h"
+#include "../util/stringer.h"
 
 
 #define REGEX "[-]{0,1}[\\d]+[.]{0,1}[\\d]{0,}"
@@ -18,7 +18,7 @@
 //string contains int seperated by commas
 //e.g. "1, -2, 3, 4, 5"
 //when you finished adding all rows, call getMatrix()
-class MatrixAdapter {
+class MatrixBuilder {
  public:
   void addRow(string);
   Matrix<int> getMatrix();

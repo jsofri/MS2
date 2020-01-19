@@ -9,8 +9,6 @@ string MatrixBFS::search(Searchable<Point> & searchable) {
   MatrixSolutionAnalyst msa;
   string solution;
 
-  //searchable_ = &searchable;
-
   init(searchable);
 
   runBFS(searchable);

@@ -5,10 +5,10 @@
 #include "server/my_serial_server.h"
 #include "client_handler/my_test_client_handler.h"
 #include "objects/matrix.h"
-#include "MatrixAdapter.h"
+#include "builders/matrix_builder.h"
 #include "iostream"
 #include "string"
-#include "matrix_searchable.h"
+#include "searchables/matrix_searchable.h"
 #include "searchers/matrix_dfs.h"
 #include "searchers/matrix_bfs.h"
 #include "searchers/matrix_best_fs.h"
@@ -18,7 +18,7 @@
 using namespace server_side;
 
 void foo() {
-  MatrixAdapter matrix_adapter;
+  MatrixBuilder matrix_adapter;
   string str = "";
   int x, i, j;
 

@@ -10,7 +10,7 @@
 #include <iostream>
 #include <cstring>
 #include <sys/socket.h>
-#include "../string_reverser.h"
+#include "../solvers/string_reverser.h"
 #include "../util/stringer.h"
 #include "../cache_manager/file_cache_manager.h"
 
