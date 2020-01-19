@@ -43,11 +43,11 @@ class Matrix {
     matrix_[p.getX()][p.getY()] = value;
   }
 
-  T getCell(unsigned int row, unsigned int column) {
+  T& getCell(unsigned int row, unsigned int column) {
     return matrix_[row][column];
   }
 
-  T getCell(Point point) {
+  T& getCell(Point point) {
     return matrix_[point.getX()][point.getY()];
   }
 
@@ -70,6 +70,10 @@ class Matrix {
 
   vector<T> & operator[](unsigned int i) {
     return matrix_[i];
+  }
+
+  vector<vector<T>>& getMatrix() {
+      return matrix_;
   }
 };
 

@@ -13,6 +13,7 @@ void MatrixBuilder::addRow(string row) {
   setValuesInVector(string_vector);
 }
 
+
 void MatrixBuilder::setValuesInVector(vector<string> & string_vector) {
   vector<int> int_vector;
 
@@ -28,6 +29,7 @@ void MatrixBuilder::setValuesInVector(vector<string> & string_vector) {
 
   int_matrix_.addRow(int_vector);
 }
+
 
 Matrix<int> MatrixBuilder::getMatrix() {
   return int_matrix_;

@@ -11,50 +11,60 @@
 #include "searchables/matrix_searchable.h"
 #include "searchers/matrix_dfs.h"
 #include "searchers/matrix_bfs.h"
+#include "searchers/matrix_astar.h"
 #include "searchers/matrix_best_fs.h"
 #define PORT 5402
-#define RANK 4
+#define RANK 10
+#define RAND 3
 
 using namespace server_side;
 
 void foo() {
-  MatrixBuilder matrix_adapter;
-  string str = "";
-  int x, i, j;
+    MatrixBuilder matrix_builder;
+    string str = "";
+    int x, i, j;
 
-  for (i = 0; i < RANK; i++) {
-    for (j = 0; j < RANK; j++) {
-      x = rand() % 100;         // v1 in the range 0 to 99
-      str += to_string(x);
-      str+=",";
+    for (i = 0; i < RANK; i++) {
+        for (j = 0; j < RANK; j++) {
+            x = rand() % RAND;         // v1 in the range 0 to RAND
+            str += to_string(x);
+            str+=",";
+        }
+        matrix_builder.addRow(str);
+        cout << str << endl;
+        str = "";
     }
-    matrix_adapter.addRow(str);
+
+    Matrix<int> matrix = matrix_adapter.getMatrix();
+
+    MatrixSearchable matrix_searchable(&matrix);
+
+  
+    //MatrixBFS matrix;
+    //MatrixAStar matrix;
+    MatrixBestFS matrix;
+  
+    str = matrix.search(matrix_searchable);
+
     cout << str << endl;
-    str = "";
-  }
-
-  Matrix<int> matrix = matrix_adapter.getMatrix();
-
-  MatrixSearchable matrix_searchable(&matrix);
-
-  //MatrixBFS matrix_bfs;
-  MatrixBestFS matrix_best_fs;
-
-  str = matrix_best_fs.search(matrix_searchable);
-
-  cout << str << endl;
 }
 
 int main() {
-  foo();
+    foo();
+    return 0;
+}
 
-  /*MySerialServer sersev;
+/**
+ * Testing part 2
+ */
+int mainPart2() {
+    MySerialServer sersev;
     try {
         sersev.open(PORT, new MyTestClientHandler());
         sersev.close();
     } catch (const char* e) {
         cerr << e << endl;
-    }*/
-    
+    }
+
     return 0;
 }

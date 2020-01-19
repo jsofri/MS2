@@ -6,6 +6,7 @@
 #define MS2_MATRIX_DFS_H
 
 
+#include "searcher.h"
 #include "../objects/matrix.h"
 #include "../objects/amdc.h"
 #include "matrix_solution_analyst.h"
@@ -13,10 +14,10 @@
 #include "searcher.h"
 
 
-class MatrixDFS : Searcher<Point, string> {
- public:
-  string search(Searchable<Point> &) override;
-  ~MatrixDFS();
+class MatrixDFS: public Searcher<Point, string> {
+public:
+    string search(Searchable<Point> &) override;
+    ~MatrixDFS();
 private:
     void initPathMatrix();
     void recursion (Point&);

@@ -6,7 +6,7 @@
 #include "matrix_solution_analyst.h"
 
 
-std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC>& matrix, Point& start, Point& end) {
+std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC>& matrix, Point& start, Point& end, Searchable<Point>& searchable) {
   AMDC amdc;
   Point path_point = end;
 
@@ -16,11 +16,26 @@ std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC>& matrix, Point& star
 
     addWeight(amdc.weight);
     addDirection(amdc.parent, path_point);
+    point_map_[path_point.toString()] = true;
 
     path_point = matrix.getCell(path_point).parent;
   } while (path_point != start);
 
-  return getString();
+  string result;
+  for (auto row : matrix_.getMatrix()) {
+      for (auto amdc : row) {
+          if (point_map_.count(amdc.myself.toString())) {
+              result += "*";
+          }
+          result += to_string(searchable.getCost(amdc.myself));
+          result += ", ";
+      }
+      result += "\n";
+  }
+
+    result += '\n' + getString();
+
+    return result;
 }
 
 void MatrixSolutionAnalyst::addDirection(Point & parent, Point & child) {

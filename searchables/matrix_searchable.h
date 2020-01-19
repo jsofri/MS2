@@ -13,15 +13,17 @@
 
 class MatrixSearchable : public Searchable<Point> {
  public:
-  MatrixSearchable(Matrix<int> *);
+  explicit MatrixSearchable(Matrix<int> *);
   Point getInitialState();
+  Point getGoalState();
   bool isGoalState(Point);
   std::list<Point> getAllPossibleStates(Point);
   std::pair<unsigned int, unsigned int> getSize();
   int getCost(Point);
+  void removeAllWalls(list<Point> points_list);
+
  private:
-  void addStates(std::list<Point>&, bool , bool, bool, bool, unsigned int &,
-                 unsigned int &);
+  void addStates(std::list<Point>&, bool , bool, bool, bool, unsigned int &, unsigned int &);
   Matrix<int> * matrix_;
   Point end_ = NO_POINT;
 };

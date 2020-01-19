@@ -9,6 +9,8 @@
 
 
 #define NO_POINT Point(-1, -1)
+#include <string>
+
 
 class Point {
  public:
@@ -17,7 +19,6 @@ class Point {
   unsigned int getY();
   bool operator==(Point);
   bool operator!=(Point);
-  //bool operator=(Point);
   std::string toString();
  private:
   unsigned int x_;
