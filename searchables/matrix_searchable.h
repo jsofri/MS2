@@ -20,7 +20,9 @@ class MatrixSearchable : public Searchable<Point> {
   std::list<Point> getAllPossibleStates(Point);
   std::pair<unsigned int, unsigned int> getSize();
   int getCost(Point);
- private:
+  void removeAllWalls(list<Point> points_list);
+
+private:
   void addStates(std::list<Point>&, bool , bool, bool, bool, unsigned int &,
                  unsigned int &);
   Matrix<int> * matrix_;
