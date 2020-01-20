@@ -5,7 +5,6 @@
 #ifndef SEARCHERS_MATRIX_BEST_FS_H_
 #define SEARCHERS_MATRIX_BEST_FS_H_
 
-#include "best_first_search.h"
 #include <algorithm>
 #include "string"
 #include "queue"
@@ -13,7 +12,7 @@
 #include "../objects/point.h"
 #include "../objects/amdc.h"
 #include "../objects/matrix.h"
-
+#include "searchables/searchable.h"
 
 using namespace std;
 

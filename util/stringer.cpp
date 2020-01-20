@@ -7,7 +7,7 @@
 using namespace std;
 
 
-string Stringer::stringFromCharArray(char* array) {
+string Stringer::lineFromCharArray(char* array) {
     string result = "";
     int i = 0;
 
@@ -22,6 +22,32 @@ string Stringer::stringFromCharArray(char* array) {
     return result;
 }
 
+list<string> Stringer::stringListFromCharArray(char * array) {
+  list<string> list;
+  int i = 0, j;
+  char notTerminate;
+
+  //holds end of each line - might be '\n' or '\0'
+  notTerminate = array[i];
+
+  //iterate on all array
+  for (; notTerminate; i++) {
+    string str = "";
+
+    //iterate on one line
+    for (;array[i] != '\n' && array[i] != '\0'; i++) {
+      str += array[i];
+    }
+
+    notTerminate = array[i];
+
+    if (str != "") {
+      list.push_back(str);
+    }
+  }
+
+  return list;
+}
 
 /**
  * get matches from string using regex

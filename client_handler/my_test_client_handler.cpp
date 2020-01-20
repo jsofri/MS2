@@ -19,7 +19,7 @@ void MyTestClientHandler::handleClient(int& client_socket) {
             throw "couldn't accept message from client";
         }
 
-        message = Stringer::stringFromCharArray(buffer);
+        message = Stringer::lineFromCharArray(buffer);
 
       if (message == "end") {
         break;

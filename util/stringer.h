@@ -5,7 +5,7 @@
 #ifndef STRINGER_H
 #define STRINGER_H
 
-
+#include <list>
 #include "cstring"
 #include "string"
 #include "vector"
@@ -17,7 +17,8 @@ using namespace std;
 
 class Stringer {
 public:
-    static string stringFromCharArray(char*);
+    static string lineFromCharArray(char*);
+    static list<string> stringListFromCharArray(char *);
     static vector<string> doRegex(string, string);
 };
 
