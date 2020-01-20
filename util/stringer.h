@@ -20,6 +20,7 @@ public:
     static string lineFromCharArray(char*);
     static list<string> stringListFromCharArray(char *);
     static vector<string> doRegex(string, string);
+    static list<string> listOfLines(list<string>);
 };
 
 

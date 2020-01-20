@@ -9,14 +9,19 @@
 #include "string"
 #include <unistd.h>
 #include "../util/stringer.h"
+#include "../objects/matrix.h"
+#include "../builders/matrix_builder.h"
+#include "../searchables/searchable.h"
 
 #define END "end\n"
 
 class MyClientHandler : public ClientHandler {
  public:
   void handleClient(int &);
-  bool endNotEntered();
  private:
+  bool endNotEntered();
+  void setAndSolveMatrix();
+  Searchable<Point>* makeSearchable();
   list<string> lines_list_;
 };
 

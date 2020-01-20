@@ -5,6 +5,11 @@
 
 #include "matrix_searchable.h"
 
+MatrixSearchable::MatrixSearchable(Matrix<int> * matrix, Point start, Point end) {
+    matrix_ = matrix;
+    start_ = start;
+    end_ = end;
+}
 
 MatrixSearchable::MatrixSearchable(Matrix<int> * matrix) {
   pair<unsigned int, unsigned int> size;
@@ -15,7 +20,7 @@ MatrixSearchable::MatrixSearchable(Matrix<int> * matrix) {
 }
 
 Point MatrixSearchable::getInitialState() {
-  return Point(0,0);
+  return start_;
 }
 
 bool MatrixSearchable::isGoalState(Point point) {

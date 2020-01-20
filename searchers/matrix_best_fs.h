@@ -12,12 +12,13 @@
 #include "../objects/point.h"
 #include "../objects/amdc.h"
 #include "../objects/matrix.h"
-#include "searchables/searchable.h"
+#include "../searchables/searchable.h"
+#include "searcher.h"
 
 using namespace std;
 
 
-class MatrixBestFS : BestFS<Point, std::string>{
+class MatrixBestFS : Searcher<Point, string>{
  public:
   string search(Searchable<Point> &);
  private:

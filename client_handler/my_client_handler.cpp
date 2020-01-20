@@ -5,10 +5,7 @@
 
 #include "my_client_handler.h"
 
-
 using namespace std;
-
-
 
 void MyClientHandler::handleClient(int & client_socket) {
   char buffer[BUFFER_SIZE];
@@ -24,10 +21,7 @@ void MyClientHandler::handleClient(int & client_socket) {
 
   } while (endNotEntered());
 
-  //solve using cachemanager
-  //get solution
-  //enter it to cache
-  //return solution
+  return setAndSolveMatrix();
 }
 
 bool MyClientHandler::endNotEntered() {
@@ -39,4 +33,37 @@ bool MyClientHandler::endNotEntered() {
   }
 
   return endIn;
+}
+
+void MyClientHandler::setAndSolveMatrix() {
+  Searchable<Point> * searchable = makeSearchable();
+
+  if (file_cache_manager.exist(searchable)) {
+    return file_cache_manager.get(matrix);
+  } else {
+    solution = objectAdapter.solve(searchable);
+    file_cache_manager.insert(searchable, solution);
+  }
+  //solve using cachemanager
+  //get solution
+  //enter it to cache
+  //return solution
+}
+
+Searchable<Point>* MyClientHandler::makeSearchable() {
+  MatrixBuilder matrix_builder;
+  Matrix<int> matrix;
+
+  //make list to hold one line in each node
+  lines_list_ = Stringer::listOfLines(lines_list_);
+
+  matrix_builder.buildNXNMatrix(lines_list_);
+
+  matrix = matrix_builder.getMatrix();
+
+
+}
+
+MyClientHandler::~MyClientHandler() {
+  delete(searchable_);
 }
