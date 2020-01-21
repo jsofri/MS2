@@ -10,7 +10,7 @@
  * @param vector "close" of best first search algorithm after end of algorithm
  * @return string that represents the steps for the goal state
  */
-string VectorSolutionAnalyst::getSolution(vector<AMDC> vector) {
+string VectorSolutionAnalyst::getSolution(vector<AMDC> & vector) {
   int i, weight = sumWeight(vector);
   string str;
   Point next = vector.back().myself;
@@ -40,7 +40,7 @@ string VectorSolutionAnalyst::getSolution(vector<AMDC> vector) {
  *
  * @param bfsdn a BFSDN struct
  */
-void VectorSolutionAnalyst::addDirection(AMDC amdc) {
+void VectorSolutionAnalyst::addDirection(AMDC & amdc) {
   string str = ", ";
 
   if (amdc.parent == start_) {
@@ -70,7 +70,7 @@ void VectorSolutionAnalyst::addDirection(AMDC amdc) {
  *
  * @param amdc AMDC struct of the second vertex in the solution.
  */
-void VectorSolutionAnalyst::handleLastNode(AMDC amdc) {
+void VectorSolutionAnalyst::handleLastNode(AMDC & amdc) {
   Point point = amdc.myself;
   string str = "";
 
