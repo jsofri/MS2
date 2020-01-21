@@ -2,8 +2,8 @@
 // Created by yehonatan on 15/01/2020.
 //
 
-#ifndef MS2_OBJECTS_AMDC_H_
-#define MS2_OBJECTS_AMDC_H_
+#ifndef OBJECTS_AMDC_H_
+#define OBJECTS_AMDC_H_
 
 #include <cmath>
 #include "point.h"
@@ -17,4 +17,4 @@ typedef struct AMDC {
   bool visited = false;
 } AMDC;
 
-#endif //MS2_OBJECTS_AMDC_H_
+#endif //OBJECTS_AMDC_H_
