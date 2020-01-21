@@ -23,6 +23,12 @@ public:
         pushFilesToMap();
     }
 
+    /*FileCacheManager<K,V>(FileCacheManager & fcm) {
+        pushFilesToMap();
+    }*/
+
+    //FileCacheManager(const FileCacheManager&) = delete;
+
     void insert(K key, V value) {
         lock_guard<mutex> lock(locker_);
         hash_map_[key.toString()] = true;
@@ -30,7 +36,7 @@ public:
         objectToFile(key, value);//save object in a file
     }
 
-    V get(K & key) {
+    V get(K key) {
 
         if (exist(key)) {
             return fileToObject(key);
@@ -100,6 +106,7 @@ private:
 
         return object;
     }
+
     std::unordered_map<unsigned long, bool> hash_map_;
     mutex locker_;
 };

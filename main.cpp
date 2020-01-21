@@ -13,11 +13,10 @@
 #include "searchers/matrix_bfs.h"
 #include "searchers/matrix_astar.h"
 #include "searchers/matrix_best_fs.h"
-#include <util/matrix_generator.h>
-#include <searchers/searcher.h>
+#include "searchers/searcher.h"
 #include <list>
-#include <util/print_to_file.h>
-#include <util/matrix_int_to_file.h>
+#include "util/print_to_file.h"
+#include "global_vars.h"
 
 #define PORT 5402
 #define MIN_RANK 10
@@ -29,6 +28,12 @@
 #define GENERATE_RANDOM true
 
 using namespace server_side;
+using namespace std;
+
+auto file_cache_manager = FileCacheManager<Searchable<Point>*, string>();
+
+// set global vars
+auto cache_manager_ = FileCacheManager<Searchable<Point>, string>();
 
 bool endNotEntered(list<string> lines_list_) {
   string last_line = lines_list_.back();
@@ -77,9 +82,9 @@ void foo() {
 
         Matrix<int> matrix;
         if (GENERATE_RANDOM) {
-            matrix = MatrixGenerator::randomMatrix(i);
+            matrix = MatrixBuilder::randomMatrix(i);
         } else {
-            matrix = MatrixGenerator::fromFile(path_matrices + matrix_file_name + ".matrix");
+            matrix = MatrixBuilder::fromFile(path_matrices + matrix_file_name + ".matrix");
         }
 
         cout << "Rank: " << to_string(i) << endl;
@@ -90,7 +95,7 @@ void foo() {
 
             // print matrix to file
             if (GENERATE_RANDOM && !matrixWritten) {
-                MatrixIntToFile::write(matrix, path_matrices + matrix_file_name + ".matrix");
+                MatrixBuilder::writeToFile(matrix, path_matrices + matrix_file_name + ".matrix");
                 matrixWritten = true;
             }
 
