@@ -5,9 +5,6 @@
 #ifndef MS2_OBJECTS_POINT_H_
 #define MS2_OBJECTS_POINT_H_
 
-#include "string"
-
-
 #define NO_POINT Point(-1, -1)
 #include <string>
 

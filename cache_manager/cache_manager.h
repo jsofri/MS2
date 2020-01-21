@@ -5,6 +5,8 @@
 #ifndef CACHE_MANAGER_H
 #define CACHE_MANAGER_H
 
+#define CACHE_DIRECTORY "cached_solutions/"
+
 template <typename K, typename V>
 class CacheManager {
     public:

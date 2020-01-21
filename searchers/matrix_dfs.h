@@ -9,7 +9,7 @@
 #include "searcher.h"
 #include "../objects/matrix.h"
 #include "../objects/amdc.h"
-#include "matrix_solution_analyst.h"
+#include "analysts/matrix_solution_analyst.h"
 #include "../searchables/searchable.h"
 #include "searcher.h"
 
@@ -26,5 +26,6 @@ private:
     Searchable<Point>* searchable_;
     Point* end_;
 };
+
 
 #endif //MS2_MATRIX_DFS_H

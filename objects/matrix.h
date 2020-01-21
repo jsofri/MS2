@@ -48,7 +48,8 @@ class Matrix {
   }
 
   T& getCell(Point point) {
-    return matrix_[point.getX()][point.getY()];
+      T& res = matrix_[point.getX()][point.getY()];
+      return res;
   }
 
   void addRow(vector<T> vector) {

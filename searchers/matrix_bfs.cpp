@@ -3,7 +3,7 @@
 //
 
 #include "matrix_bfs.h"
-#include "matrix_solution_analyst.h"
+#include "analysts/matrix_solution_analyst.h"
 
 string MatrixBFS::search(Searchable<Point> & searchable) {
   MatrixSolutionAnalyst msa;
@@ -21,7 +21,8 @@ string MatrixBFS::search(Searchable<Point> & searchable) {
 }
 
 void MatrixBFS::init(Searchable<Point> & searchable) {
-  start_ = searchable.getInitialState();
+    traversed_vertex_counter_ = 0;
+    start_ = searchable.getInitialState();
 
   setMatrix(searchable);
   setQueue(searchable);
@@ -75,31 +76,31 @@ Point MatrixBFS::dequeue() {
 void MatrixBFS::runBFS(Searchable<Point> & searchable) {
 
   while (!queue_->empty()) {
+    traversed_vertex_counter_++;
+
     Point point = dequeue();
+
+    if (searchable.isGoalState(point)) {
+        end_ = point;
+        return;
+    }
 
     list<Point> adjs = searchable.getAllPossibleStates(point);
 
     for (Point adjacent : adjs) {
-
       //adjacent was not visited
-      if (!amdc_matrix_[adjacent.getX()][adjacent.getY()].visited) {
-
-        amdc_matrix_[adjacent.getX()][adjacent.getY()].visited = true;
-
+      unsigned int x = adjacent.getX();
+      unsigned int y = adjacent.getY();
+      if (!amdc_matrix_[x][y].visited) {
+        amdc_matrix_[x][y].visited = true;
         //update parent of adjacent
-        amdc_matrix_[adjacent.getX()][adjacent.getY()].parent = point;
-
+        amdc_matrix_[x][y].parent = point;
         //update weight of adjacent
-        amdc_matrix_[adjacent.getX()][adjacent.getY()].weight =
-            amdc_matrix_[point.getX()][point.getY()].weight
-            + searchable.getCost(adjacent);
+        amdc_matrix_[x][y].weight = amdc_matrix_[point.getX()][point.getY()].weight + searchable.getCost(adjacent);
 
         enqueue(adjacent);
       }
-
-      if (searchable.isGoalState(point)) {
-        end_ = point;
-      }
     }
   }
+
 }

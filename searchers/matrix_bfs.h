@@ -13,10 +13,10 @@
 #include "../searchables/searchable.h"
 #include "searcher.h"
 
-class MatrixBFS : Searcher<Point, string> {
+class MatrixBFS : public Searcher<Point, string> {
  public:
   string search(Searchable<Point> &);
- private:
+private:
   void init(Searchable<Point> &);
   void runBFS(Searchable<Point> &);
   void setMatrix(Searchable<Point> &);

@@ -56,24 +56,24 @@ list<string> Stringer::stringListFromCharArray(char * array) {
  * @return a vector of matches
  */
 vector<string> Stringer :: doRegex(string str, string pattern) {
-  vector<string> matches;
+    vector<string> matches;
 
-  auto reg = regex(pattern);
-  auto iter = sregex_iterator(str.begin(), str.end(), reg);
-  auto iterHelper = sregex_iterator();
+    auto reg = regex(pattern);
+    auto iter = sregex_iterator(str.begin(), str.end(), reg);
+    auto iterHelper = sregex_iterator();
 
-  // loop the matches
-  for (auto i = iter; i != iterHelper; ++i) {
+    // loop the matches
+    for (auto i = iter; i != iterHelper; ++i) {
 
-      // skip empty matches
-      if (((*i).str()) == "") {
-        continue;
-      }
+        // skip empty matches
+        if (((*i).str()) == "") {
+            continue;
+        }
 
-      matches.push_back((*i).str());
+        matches.push_back((*i).str());
     }
 
-  return matches;
+    return matches;
 }
 
 //get a list of string with unordered lines
