@@ -1,7 +1,3 @@
-//
-// Created by yehonatan on 21/01/2020.
-//
-
 #ifndef MS2__GLOBAL_VARS_H_
 #define MS2__GLOBAL_VARS_H_
 
