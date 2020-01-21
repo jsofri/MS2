@@ -19,6 +19,33 @@
 
 using namespace server_side;
 
+bool endNotEntered(list<string> lines_list_) {
+  string last_line = lines_list_.back();
+  bool endIn = false;
+
+  if (last_line.size() < 5) {
+    endIn = (last_line.size() == strspn(last_line.c_str(), "end\n"));
+  }
+
+  return endIn;
+}
+
+void doo() {
+  list <string> lines_list_;
+  char buffer[BUFFER_SIZE];
+  string str;
+
+  do {
+    cin >> buffer;
+
+    list<string> tmp_list = Stringer::stringListFromCharArray(buffer);
+
+    //add tmp_list to lines_list_
+    lines_list_.insert(lines_list_.end(), tmp_list.begin(), tmp_list.end());
+
+  } while (endNotEntered(lines_list_));
+}
+/*
 void foo() {
     MatrixBuilder matrix_builder;
     string str = "";
@@ -48,9 +75,28 @@ void foo() {
 
     cout << str << endl;
 }
+*/
+
+void hoo(){
+  MatrixBuilder matrix_builder;
+  Matrix<int> matrix;
+  list<string> list;
+
+  list.push_back("5,6,-1,2,1");
+  list.push_back("0\n3,2,4,3,6\n1");
+  list.push_back(",-1,9,3,3\n4");
+  list.push_back(",5,6,7,8\n9,10,-1,2,3\n0");
+  list.push_back(",0\n4,4\nend\n");
+
+  matrix_builder.buildNXNMatrix(Stringer::listOfLines(list));
+
+  matrix = matrix_builder.getMatrix();
+
+  cout << matrix.getSize().second << endl;
+}
 
 int main() {
-    foo();
+    hoo();
     return 0;
 }
 

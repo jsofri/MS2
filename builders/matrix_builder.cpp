@@ -13,7 +13,6 @@ void MatrixBuilder::addRow(string row) {
   setValuesInVector(string_vector);
 }
 
-
 void MatrixBuilder::setValuesInVector(vector<string> & string_vector) {
   vector<int> int_vector;
 
@@ -30,6 +29,17 @@ void MatrixBuilder::setValuesInVector(vector<string> & string_vector) {
   int_matrix_.addRow(int_vector);
 }
 
+void MatrixBuilder::buildNXNMatrix(list<string> input) {
+  auto first_row = Stringer::doRegex(input.front(), REGEX);
+  int n = first_row.size();
+  list<string>::iterator iter = input.begin();
+
+  //add first n rows to matrix
+  while (n-- > 0) {
+    addRow(*iter);
+    iter++;
+  }
+}
 
 Matrix<int> MatrixBuilder::getMatrix() {
   return int_matrix_;

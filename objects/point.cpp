@@ -21,5 +21,6 @@ bool Point::operator!=(Point p) {
 }
 
 std::string Point::toString() {
-    std::string str = "(" +  std::to_string(x_) + ", " + std::to_string(y_) + ")";
-    return str;
+  std::string str = "(" + std::to_string(x_) + ", " + std::to_string(y_) + ")";
+  return str;
+}

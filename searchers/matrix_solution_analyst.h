@@ -14,7 +14,7 @@
 #include "cstring"
 #include <sstream>
 #include <unordered_map>
-#include <searchables/searchable.h>
+#include "../searchables/searchable.h"
 
 
 class MatrixSolutionAnalyst : public SolutionAnalyst {

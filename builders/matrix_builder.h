@@ -5,9 +5,9 @@
 #ifndef MATRIX_BUILDER_H_
 #define MATRIX_BUILDER_H_
 
-#include "objects/matrix.h"
+#include "../objects/matrix.h"
 #include "string"
-#include "util/stringer.h"
+#include "../util/stringer.h"
 
 #define REGEX "[-]{0,1}[\\d]+[.]{0,1}[\\d]{0,}"
 
@@ -20,6 +20,7 @@
 class MatrixBuilder {
  public:
   void addRow(string);
+  void buildNXNMatrix(list<string>);
   Matrix<int> getMatrix();
  private:
   void setValuesInVector(vector<string> &);

@@ -5,17 +5,22 @@
 
 #include "matrix_searchable.h"
 
+MatrixSearchable::MatrixSearchable(Matrix<int> matrix, Point start, Point end) {
+    matrix_ = matrix;
+    start_ = start;
+    end_ = end;
+}
 
-MatrixSearchable::MatrixSearchable(Matrix<int> * matrix) {
+MatrixSearchable::MatrixSearchable(Matrix<int> matrix) {
   pair<unsigned int, unsigned int> size;
 
   matrix_ = matrix;
-  size = matrix_-> getSize();
+  size = matrix.getSize();
   end_ = Point(size.first - 1, size.second - 1);
 }
 
 Point MatrixSearchable::getInitialState() {
-  return Point(0,0);
+  return start_;
 }
 
 bool MatrixSearchable::isGoalState(Point point) {
@@ -85,27 +90,27 @@ void MatrixSearchable::removeAllWalls(list<Point> points_list) {
 
 void MatrixSearchable::addStates(std::list<Point>& list, bool right,
                bool left, bool up, bool down, unsigned int & x, unsigned int & y) {
-  if (right && matrix_->getCell(Point(x, y + 1)) != -1) {
+  if (right && matrix_.getCell(Point(x, y + 1)) != -1) {
     list.push_back(Point(x, y + 1));
   }
 
-  if (left && matrix_->getCell(Point(x, y - 1)) != -1) {
+  if (left && matrix_.getCell(Point(x, y - 1)) != -1) {
     list.push_back(Point(x, y - 1));
   }
 
-  if(up && matrix_->getCell(Point(x - 1, y)) != -1) {
+  if(up && matrix_.getCell(Point(x - 1, y)) != -1) {
     list.push_back(Point(x-1, y));
   }
 
-  if (down && matrix_->getCell(Point(x + 1, y)) != -1) {
+  if (down && matrix_.getCell(Point(x + 1, y)) != -1) {
     list.push_back(Point(x + 1, y));
   }
 }
 
 std::pair<unsigned int, unsigned int> MatrixSearchable::getSize() {
-  return matrix_->getSize();
+  return matrix_.getSize();
 }
 
 int MatrixSearchable::getCost(Point p) {
-  return (*matrix_)[p.getX()][p.getY()];
+  return matrix_[p.getX()][p.getY()];
 }
