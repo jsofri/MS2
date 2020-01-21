@@ -35,7 +35,7 @@ Matrix<int> MatrixGenerator::fromFile(string file_name) {
     fp = fopen(file_name.c_str(), "r");
 
     if (fp == NULL) {
-        perror("can't write matrix to file");
+        perror("can't read matrix from file");
         exit(1);
     }
 
@@ -44,7 +44,7 @@ Matrix<int> MatrixGenerator::fromFile(string file_name) {
 
     // add each row to matrix
     while (fgets(line, MAX_LINE_LENGTH, fp)) {
-        string str = Stringer::getAllCharsInCharArray(line);
+        string str = Stringer::lineFromCharArray(line);
         mb -> addRow(str);
     }
 

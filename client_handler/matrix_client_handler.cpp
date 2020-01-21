@@ -12,7 +12,7 @@ void MatrixClientHandler::handleClient(int & client_socket) {
 
     while (keep_running_) {
         val = read(client_socket, buffer, 1024);
-        message = Stringer::getAllCharsInCharArray(buffer);
+        message = Stringer::lineFromCharArray(buffer);
 
         if (message.size() >= 5) {
             string_list.push_back(message);

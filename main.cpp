@@ -26,7 +26,7 @@
 #define JUMP 4
 #define MATRIX_DIRECTORY "matrices_output/"
 #define SEARCHER_PAIR std::pair<Searcher<Point, string>*, string>
-#define GENERATE_RANDOM false
+#define GENERATE_RANDOM true
 
 using namespace server_side;
 
@@ -56,7 +56,7 @@ void doo() {
 
   } while (endNotEntered(lines_list_));
 }
-/*
+
 void foo() {
 
     string path_results = MATRIX_DIRECTORY;
@@ -66,7 +66,8 @@ void foo() {
 
 
     for (int i = MIN_RANK; i <= MAX_RANK; i += JUMP) {
-        string file_name = "BFS" + to_string(i);
+        bool matrixWritten = false;
+        string matrix_file_name = "RANK_" + to_string(i);
 
         std::list<SEARCHER_PAIR> searchers;
         searchers.push_back(SEARCHER_PAIR(new MatrixBFS(), "BFS"));
@@ -78,10 +79,9 @@ void foo() {
         if (GENERATE_RANDOM) {
             matrix = MatrixGenerator::randomMatrix(i);
         } else {
-            matrix = MatrixGenerator::fromFile(path_matrices + file_name + ".matrix");
+            matrix = MatrixGenerator::fromFile(path_matrices + matrix_file_name + ".matrix");
         }
 
-        MatrixSearchable matrix_searchable(&matrix);
         cout << "Rank: " << to_string(i) << endl;
 
         for (auto pair : searchers) {
@@ -89,20 +89,22 @@ void foo() {
             auto classname = pair.second;
 
             // print matrix to file
-            if (!GENERATE_RANDOM) {
-                MatrixIntToFile::write(matrix, path_matrices + file_name + ".matrix");
+            if (GENERATE_RANDOM && !matrixWritten) {
+                MatrixIntToFile::write(matrix, path_matrices + matrix_file_name + ".matrix");
+                matrixWritten = true;
             }
 
             // search and print result to file
+            MatrixSearchable matrix_searchable(matrix);
             string result = searcher->search(matrix_searchable);
             auto vertices = searcher -> getTraversedVerixes();
             cout << "\t" <<  classname << ": " << to_string(vertices) << endl;
 
-            PrintToFile::write(result, path_results + file_name + ".result");
+            string path = path_results + classname + to_string(i) + ".result";
+            PrintToFile::write(result, path);
         }
     }
 }
-*/
 
 void hoo(){
   MatrixBuilder matrix_builder;
@@ -123,7 +125,7 @@ void hoo(){
 }
 
 int main() {
-    hoo();
+    foo();
     return 0;
 }
 
