@@ -7,15 +7,16 @@
 
 #include <iostream>
 #include "cstring"
-#define RANK 10
-#define RAND 1000
+#include <objects/matrix.h>
+
+#define RAND 3
+#define RAND_WALL 20
 
 using namespace std;
 class MatrixGenerator {
- private:
-  static void printAndClose(string, string);
- public:
-  static void makeMatrices();
+public:
+    static Matrix<int> randomMatrix(int);
+    static Matrix<int> fromFile(string);
 };
 
 #endif //MATRIX_GENERATOR_H_
