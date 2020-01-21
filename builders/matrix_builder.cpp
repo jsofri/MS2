@@ -36,8 +36,8 @@ void MatrixBuilder::buildNXNMatrix(list<string> input) {
 
   //add first n rows to matrix
   while (n-- > 0) {
-      addRow(*iter);
-      iter++;
+    addRow(*iter);
+    iter++;
   }
 }
 
