@@ -17,7 +17,8 @@ using namespace std;
 
 class Stringer {
 public:
-    static string stringFromCharArray(char*);
+    static string firstLineInCharArray(char*);
+    static string getAllCharsInCharArray(char*);
     static vector<string> doRegex(string, string);
 };
 

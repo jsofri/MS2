@@ -18,11 +18,12 @@ string MatrixBestFS::search(Searchable<Point> & searchable) {
 }
 
 void MatrixBestFS::init(Searchable<Point> & searchable) {
-  Point null = NO_POINT;
-  start_ = searchable.getInitialState();
+    traversed_vertex_counter_ = 0;
+    Point null = NO_POINT;
+    start_ = searchable.getInitialState();
 
-  setMatrix(searchable);
-  addToOpen(searchable, null, start_);
+    setMatrix(searchable);
+    addToOpen(searchable, null, start_);
 }
 
 void MatrixBestFS::setMatrix(Searchable<Point> & searchable) {
@@ -30,9 +31,9 @@ void MatrixBestFS::setMatrix(Searchable<Point> & searchable) {
   unsigned int i,j;
 
   for (i = 0; i < size.first; i++) {
-    vector<bool> row;
+    vector<char> row;
     for (j=0; j < size.second; j++) {
-      row.push_back(false);
+      row.push_back(0);
     }
     matrix_.addRow(row);
   }
@@ -40,6 +41,8 @@ void MatrixBestFS::setMatrix(Searchable<Point> & searchable) {
 
 void MatrixBestFS::runBestFS(Searchable<Point> & searchable) {
   while (!searchable.isGoalState(open_.front().myself)) {
+    traversed_vertex_counter_++;
+
     list<Point> adjacents;
     AMDC curr_amdc = open_.front();
 
@@ -68,7 +71,7 @@ void MatrixBestFS::addToOpen(Searchable<Point> & searchable, Point & parent, Poi
   amdc.myself = child;
   amdc.parent = parent;
   amdc.weight = searchable.getCost(child);
-  matrix_.setCell(child, true);
+  matrix_.setCell(child, 1);
 
   open_.push_back(amdc);
 }

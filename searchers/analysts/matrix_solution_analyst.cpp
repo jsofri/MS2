@@ -21,17 +21,23 @@ std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC>& matrix, Point& star
     path_point = matrix.getCell(path_point).parent;
   } while (path_point != start);
 
-  string result;
-  for (auto row : matrix_.getMatrix()) {
-      for (auto amdc : row) {
-          if (point_map_.count(amdc.myself.toString())) {
-              result += "*";
-          }
-          result += to_string(searchable.getCost(amdc.myself));
-          result += ", ";
-      }
-      result += "\n";
-  }
+    //printMarkedPath(searchable);
+
+  return getString();
+}
+
+string MatrixSolutionAnalyst::printMarkedPath (Searchable<Point>& searchable) {
+    string result;
+    for (auto row : matrix_.getMatrix()) {
+        for (auto amdc : row) {
+            if (point_map_.count(amdc.myself.toString())) {
+                result += "*";
+            }
+            result += to_string(searchable.getCost(amdc.myself));
+            result += ", ";
+        }
+        result += "\n";
+    }
 
     result += '\n' + getString();
 

@@ -7,7 +7,7 @@
 using namespace std;
 
 
-string Stringer::stringFromCharArray(char* array) {
+string Stringer::firstLineInCharArray(char* array) {
     string result = "";
     int i = 0;
 
@@ -17,6 +17,16 @@ string Stringer::stringFromCharArray(char* array) {
         }
         result += array[i];
         i++;
+    }
+
+    return result;
+}
+
+string Stringer::getAllCharsInCharArray(char* array) {
+    string result = "";
+    int i = 0;
+    while (array[i] != '\0') {
+        result += array[i++];
     }
 
     return result;

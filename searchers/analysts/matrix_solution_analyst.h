@@ -9,18 +9,20 @@
 #include <string>
 #include <list>
 #include "solution_analyst.h"
-#include "../objects/amdc.h"
-#include "../objects/matrix.h"
+#include "../../objects/amdc.h"
+#include "../../objects/matrix.h"
 #include "cstring"
 #include <sstream>
 #include <unordered_map>
-#include <searchables/searchable.h>
+#include "../../searchables/searchable.h"
 
 
 class MatrixSolutionAnalyst : public SolutionAnalyst {
- public:
+public:
   std::string getSolution(Matrix<AMDC>&, Point&, Point&, Searchable<Point>&);
- private:
+  string printMarkedPath (Searchable<Point>&);
+
+private:
   void addDirection(Point &, Point &);
   Matrix<AMDC> matrix_;
   unordered_map<string, bool> point_map_;

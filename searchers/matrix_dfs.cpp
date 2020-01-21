@@ -8,6 +8,7 @@ string MatrixDFS::search(Searchable<Point>& searchable) {
     MatrixSolutionAnalyst msa;
     string solution;
     searchable_ = &searchable;
+    traversed_vertex_counter_ = 0;
 
     // initialize the path matrix
     initPathMatrix();
@@ -22,14 +23,14 @@ string MatrixDFS::search(Searchable<Point>& searchable) {
     // do the recursion
     recursion(initial);
 
-    printMatrix();
-
     // return solution
     solution = msa.getSolution(path_matrix_, initial, *end_, *searchable_);
     return solution;
 }
 
-void MatrixDFS::recursion (Point& currentPoint) {
+void MatrixDFS::recursion(Point& currentPoint) {
+    traversed_vertex_counter_++;
+
     // check if we reached the goal point
     if (searchable_ -> isGoalState(currentPoint)) {
         end_ = new Point(currentPoint);

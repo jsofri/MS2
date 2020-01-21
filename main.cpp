@@ -13,40 +13,67 @@
 #include "searchers/matrix_bfs.h"
 #include "searchers/matrix_astar.h"
 #include "searchers/matrix_best_fs.h"
+#include <util/matrix_generator.h>
+#include <searchers/searcher.h>
+#include <list>
+#include <util/print_to_file.h>
+#include <util/matrix_int_to_file.h>
+
 #define PORT 5402
-#define RANK 10
-#define RAND 3
+#define MIN_RANK 10
+#define MAX_RANK 50
+#define REQUIRED_MATRICES 10
+#define JUMP 4
+#define MATRIX_DIRECTORY "matrices_output/"
+#define SEARCHER_PAIR std::pair<Searcher<Point, string>*, string>
+#define GENERATE_RANDOM false
 
 using namespace server_side;
 
 void foo() {
-    MatrixBuilder matrix_builder;
-    string str = "";
-    int x, i, j;
 
-    for (i = 0; i < RANK; i++) {
-        for (j = 0; j < RANK; j++) {
-            x = rand() % RAND;         // v1 in the range 0 to RAND
-            str += to_string(x);
-            str+=",";
+    string path_results = MATRIX_DIRECTORY;
+    path_results += "results/";
+    string path_matrices = MATRIX_DIRECTORY;
+    path_matrices += "matrices/";
+
+
+    for (int i = MIN_RANK; i <= MAX_RANK; i += JUMP) {
+        string file_name = "BFS" + to_string(i);
+
+        std::list<SEARCHER_PAIR> searchers;
+        searchers.push_back(SEARCHER_PAIR(new MatrixBFS(), "BFS"));
+        searchers.push_back(SEARCHER_PAIR(new MatrixDFS(), "DFS"));
+        searchers.push_back(SEARCHER_PAIR(new MatrixBestFS(), "BestFS"));
+        searchers.push_back(SEARCHER_PAIR(new MatrixAStar(), "AStar"));
+
+        Matrix<int> matrix;
+        if (GENERATE_RANDOM) {
+            matrix = MatrixGenerator::randomMatrix(i);
+        } else {
+            matrix = MatrixGenerator::fromFile(path_matrices + file_name + ".matrix");
         }
-        matrix_builder.addRow(str);
-        cout << str << endl;
-        str = "";
+
+        MatrixSearchable matrix_searchable(&matrix);
+        cout << "Rank: " << to_string(i) << endl;
+
+        for (auto pair : searchers) {
+            auto searcher = pair.first;
+            auto classname = pair.second;
+
+            // print matrix to file
+            if (!GENERATE_RANDOM) {
+                MatrixIntToFile::write(matrix, path_matrices + file_name + ".matrix");
+            }
+
+            // search and print result to file
+            string result = searcher->search(matrix_searchable);
+            auto vertices = searcher -> getTraversedVerixes();
+            cout << "\t" <<  classname << ": " << to_string(vertices) << endl;
+
+            PrintToFile::write(result, path_results + file_name + ".result");
+        }
     }
-
-    Matrix<int> matrix = matrix_adapter.getMatrix();
-
-    MatrixSearchable matrix_searchable(&matrix);
-
-  
-    //MatrixBFS matrix;
-    //MatrixAStar matrix;
-    MatrixBestFS matrix;
-  
-    str = matrix.search(matrix_searchable);
-
-    cout << str << endl;
 }
 
 int main() {

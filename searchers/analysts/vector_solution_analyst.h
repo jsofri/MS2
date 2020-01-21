@@ -7,8 +7,8 @@
 
 #include "vector"
 #include "solution_analyst.h"
-#include "../objects/point.h"
-#include "../objects/amdc.h"
+#include "../../objects/point.h"
+#include "../../objects/amdc.h"
 
 using namespace std;
 
@@ -19,11 +19,11 @@ using namespace std;
  */
 class VectorSolutionAnalyst : SolutionAnalyst {
  public:
-  string getSolution(vector<AMDC>);
+  string getSolution(vector<AMDC>&);
  private:
   double sumWeight(vector<AMDC> &);
-  void addDirection(AMDC);
-  void handleLastNode(AMDC);
+  void addDirection(AMDC&);
+  void handleLastNode(AMDC&);
   Point start_ = NO_POINT;
 };
 

@@ -4,22 +4,20 @@
 
 #include <cmath>
 #include "matrix_astar.h"
-#include "matrix_solution_analyst.h"
+#include "analysts/matrix_solution_analyst.h"
 
 string MatrixAStar::search(Searchable<Point>& searchable) {
     MatrixSolutionAnalyst msa;
     string solution;
     searchable_ = &searchable;
+    traversed_vertex_counter_ = 0;
 
     // initialize the path matrix
     initPathMatrix();
 
-    // push the neighbors of the initial state into the priority queue
-    auto initial = searchable_ -> getInitialState();
-    path_matrix_.getCell(initial).weight = searchable_ -> getCost(initial);
-    pushNeighborsOf(initial);
+    // init: push first vertex to queue
+    init();
 
-    // do the recursion
     try {
         runAStar();
     } catch (const char * exception) {
@@ -27,15 +25,31 @@ string MatrixAStar::search(Searchable<Point>& searchable) {
     }
 
     // return solution
+    auto initial = searchable_ -> getInitialState();
     auto end = searchable_ -> getGoalState();
     solution = msa.getSolution(path_matrix_, initial, end, searchable);
     return solution;
 }
 
+void MatrixAStar::init () {
+    auto initial = searchable_ -> getInitialState();
+    AMDC& initial_amdc = path_matrix_.getCell(initial);
+    initial_amdc.weight = searchable_ -> getCost(initial);
+
+    double priority = initial_amdc.weight + distance(initial, searchable_ -> getGoalState());
+    initial_amdc.weightH = priority;
+    //auto pr = pair<double, AMDC&>(priority, initial_amdc);
+    open_.push_front(&initial_amdc);
+    open_map_[initial.toString()] = open_.begin();
+    open_.sort();
+}
+
 void MatrixAStar::runAStar() {
-    while (!queue_.empty()) {
-        auto top = queue_.front().second.myself;
-        auto topIter = queue_.begin();
+    while (!open_.empty()) {
+        traversed_vertex_counter_++;
+
+        auto top = open_.front() -> myself;
+        // cout << top.toString() << " " << path_matrix_.getCell(top).weight << endl;
 
         // check if goal has been reached
         if (searchable_->isGoalState(top)) {
@@ -43,50 +57,64 @@ void MatrixAStar::runAStar() {
         }
 
         // remove top from priority queue and map
-        queue_.erase(topIter);
-        map_.erase(top.toString());
-
-        //cout << "erased top: " << top.toString() << endl;
+        open_.pop_front();
+        open_map_.erase(top.toString());
 
         // push neighbors
         pushNeighborsOf(top);
+
+        // add to closed list
+        close_[top.toString()] = true;
     }
+
     throw "Error: Could not reach the destination.";
 }
 
-unsigned int MatrixAStar::distance(Point p1, Point p2) {
-    auto dist = abs((double) p1.getX() - p2.getX()) + abs((double) p1.getY() - p2.getY());
-    return (unsigned int) dist;
-}
-
+// push the neighbors of the the current state into the priority queue or update their weight
 void MatrixAStar::pushNeighborsOf(Point p) {
     auto neighbors = searchable_ -> getAllPossibleStates(p);
     auto p_amdc = path_matrix_.getCell(p);
 
     for (Point neighbor: neighbors) {
-        //cout << "neighbor: " << neighbor.toString() << endl;
+        bool addToOpen = false;
+
         // don't go back to your parent
-        if (p_amdc.parent != neighbor){
+        if (p_amdc.parent != neighbor) {
             AMDC& neighbor_amdc = path_matrix_.getCell(neighbor);
-            // don't change weight of neighbor if it has smaller weight
-            if (neighbor_amdc.weight >= p_amdc.weight + searchable_-> getCost(neighbor)) {
-                neighbor_amdc.parent = p;
-                neighbor_amdc.weight = p_amdc.weight + searchable_-> getCost(neighbor);
+            auto weight = p_amdc.weight + searchable_-> getCost(neighbor);
 
-                //cout << "     updated: parent:" << p.toString() << " weight: " << neighbor_amdc.weight << endl;
-
-                // push neighbor if he does not already exist in queue
-                if (map_.count(neighbor.toString()) == 0) {
-                    double weight_with_phys_dist = neighbor_amdc.weight + distance(neighbor, searchable_->getGoalState());
-                    auto pair = std::pair<double, AMDC>(weight_with_phys_dist, neighbor_amdc);
-                    queue_.PriorityQ::push(pair);
-                    map_[neighbor.toString()] = true;
-
-                    //cout << "     and added: physic:" << weight_with_phys_dist << endl;
+            if (open_map_.count(neighbor.toString())) {
+                if (neighbor_amdc.weight <= weight) {
+                    continue;
                 }
+            } else if (close_.count(neighbor.toString())) {
+                if (neighbor_amdc.weight <= weight) {
+                    continue;
+                }
+                close_.erase(neighbor.toString());
+                addToOpen = true;
+
+            } else {
+                addToOpen = true;
             }
+
+            if (addToOpen) {
+                open_.push_front(&neighbor_amdc);
+                open_map_[neighbor.toString()] = open_.begin();
+                open_.sort();
+            }
+
+            neighbor_amdc.weight = weight;
+            neighbor_amdc.weightH = weight + distance(neighbor, searchable_->getGoalState());
+            neighbor_amdc.parent = p;
+
         }
     }
+}
+
+unsigned int MatrixAStar::distance(Point p1, Point p2) {
+    auto dist = abs((double) p1.getX() - p2.getX()) + abs((double) p1.getY() - p2.getY());
+    return (unsigned int) dist;
 }
 
 /**

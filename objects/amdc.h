@@ -14,6 +14,7 @@ typedef struct AMDC {
   Point myself = NO_POINT;
   Point parent = NO_POINT;
   double weight = HUGE_VAL;
+  double weightH = HUGE_VAL; // with heuristic
   bool visited = false;
 } AMDC;
 

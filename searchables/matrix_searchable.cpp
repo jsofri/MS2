@@ -107,5 +107,8 @@ std::pair<unsigned int, unsigned int> MatrixSearchable::getSize() {
 }
 
 int MatrixSearchable::getCost(Point p) {
-  return (*matrix_)[p.getX()][p.getY()];
+    if (p == NO_POINT) {
+        return 0;
+    }
+    return (*matrix_)[p.getX()][p.getY()];
 }
