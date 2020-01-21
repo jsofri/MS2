@@ -70,7 +70,7 @@ private:
         fstream file;
         string file_name = CACHE_DIRECTORY + to_string(key.toString());
 
-        file.open(file_name.c_str(), ios::out|ios::binary);
+        file.open(file_name.c_str(), ios::out);
 
         if(!file){
             throw "error in file opening";
@@ -87,7 +87,7 @@ private:
 
         file_name = CACHE_DIRECTORY + key.toString();
 
-        file.open(file_name.c_str() ,ios::in|ios::binary);
+        file.open(file_name.c_str() ,ios::in);
         if(!file){
             throw "Error in file opening";
         }

@@ -21,7 +21,7 @@ class MyClientHandler : public ClientHandler {
   void handleClient(int &);
  private:
   bool endNotEntered();
-  void setAndSolveMatrix();
+  string setAndSolveMatrix();
   MatrixSearchable makeSearchable();
   list<string> lines_list_;
 };

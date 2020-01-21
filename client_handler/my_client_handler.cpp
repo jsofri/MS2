@@ -21,7 +21,9 @@ void MyClientHandler::handleClient(int & client_socket) {
 
   } while (endNotEntered());
 
-  return setAndSolveMatrix();
+  str = setAndSolveMatrix();
+
+  //send solution to client
 }
 
 bool MyClientHandler::endNotEntered() {
@@ -35,20 +37,19 @@ bool MyClientHandler::endNotEntered() {
   return endIn;
 }
 
-void MyClientHandler::setAndSolveMatrix() {
-  MatrixSearchable searchable = makeSearchable();
+string MyClientHandler::setAndSolveMatrix() {
 
-  if (file_cache_manager.exist(searchable)) {
-    return file_cache_manager.get(matrix);
-  } else {
+    MatrixSearchable searchable = makeSearchable();
+    string solution;
+
+    if (file_cache_manager.exist(searchable)) {
+        solution =  file_cache_manager.get(searchable);
+    } else {
     solution = objectAdapter.solve(searchable);
     file_cache_manager.insert(searchable, solution);
   }
 
-  //solve using cachemanager
-  //get solution
-  //enter it to cache
-  //return solution
+  return solution;
 }
 
 MatrixSearchable MyClientHandler::makeSearchable() {
