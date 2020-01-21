@@ -1,27 +1,26 @@
 //
-// Created by yehonatan on 09/01/2020.
+// Created by yehonatan on 21/01/2020.
 //
 
-
-#include "my_serial_server.h"
+#include "my_parallel_server.h"
 
 
 using namespace server_side;
 using namespace std;
 
-void MySerialServer::open(int port, ClientHandler * client_handler) {
+void MyParallelServer::open(int port, ClientHandler * client_handler) {
     keep_running_ = true;
     //server_thread_ = thread(&MySerialServer::run, this, ref(port), ref(client_handler));
     run(port, client_handler);
 }
 
 
-void MySerialServer::close() {
+void MyParallelServer::close() {
     keep_running_ = false;
     //server_thread_.join();
 }
 
-void MySerialServer::run(int & port, ClientHandler* & client_handler){
+void MyParallelServer::run(int & port, ClientHandler* & client_handler){
 
     //create socket
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -55,12 +54,16 @@ void MySerialServer::run(int & port, ClientHandler* & client_handler){
     // Server is now accepting clients
     acceptClients(socketfd, address, client_handler);
 
+    for(auto iter = thread_list_.begin(); iter != thread_list_.end(); iter++) {
+        (*iter).join();
+    }
+
     // close listening server socket
     ::close(socketfd);
     close();
 }
 
-void MySerialServer::acceptClients(int socketfd, sockaddr_in& address, ClientHandler* client_handler) {
+void MyParallelServer::acceptClients(int socketfd, sockaddr_in& address, ClientHandler* client_handler) {
     int client_socket;
 
     while (keep_running_) {
@@ -70,12 +73,17 @@ void MySerialServer::acceptClients(int socketfd, sockaddr_in& address, ClientHan
         client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
 
         if (client_socket != -1) {
-            client_handler -> handleClient(client_socket);
+            //make new thread and add it to list and run it
+            std::thread new_thread(&MyParallelServer::runOneClient, this, client_handler, client_socket);
+            thread_list_.push_back(new_thread);
         } else {
             perror("Accept error");
         }
 
         cout << "Client ended the connection" << endl;
-
     }
+}
+
+void MyParallelServer::runOneClient(ClientHandler* client_handler, int client_socket) {
+    client_handler -> handleClient(client_socket);
 }

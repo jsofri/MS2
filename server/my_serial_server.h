@@ -14,6 +14,9 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include "chrono"
+#include <string>
+#define TIME_OUT 120
+#define MAX_CLIENTS 10
 
 
 namespace server_side {
