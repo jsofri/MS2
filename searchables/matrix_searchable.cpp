@@ -5,70 +5,75 @@
 
 #include "matrix_searchable.h"
 
+MatrixSearchable::MatrixSearchable(Matrix<int> matrix, Point start, Point end) {
+    matrix_ = matrix;
+    start_ = start;
+    end_ = end;
+}
 
-MatrixSearchable::MatrixSearchable(Matrix<int> * matrix) {
-  pair<unsigned int, unsigned int> size;
+MatrixSearchable::MatrixSearchable(Matrix<int> matrix) {
+    pair<unsigned int, unsigned int> size;
 
-  matrix_ = matrix;
-  size = matrix_-> getSize();
-  end_ = Point(size.first - 1, size.second - 1);
+    matrix_ = matrix;
+    size = matrix.getSize();
+    end_ = Point(size.first - 1, size.second - 1);
 }
 
 Point MatrixSearchable::getInitialState() {
-  return Point(0,0);
+    return start_;
 }
 
 bool MatrixSearchable::isGoalState(Point point) {
-  return point == end_;
+    return point == end_;
 }
 
 Point MatrixSearchable::getGoalState() {
-  return end_;
+    return end_;
 }
 
 std::list<Point> MatrixSearchable::getAllPossibleStates(Point point) {
-  list<Point> points_list;
-  unsigned int x, y;
-  x = point.getX();
-  y = point.getY();
+    list<Point> points_list;
+    unsigned int x, y;
+    x = point.getX();
+    y = point.getY();
 
-  if (x > 0 && (x < end_.getX())) {
-    if ((y > 0) && (y < end_.getY())) {
-      addStates(points_list, true,true,true,true,x,y);
-    } else if (y == end_.getY()) {
-      addStates(points_list, false,true,true,true,x,y);
-    } else if (y == 0) {
-      addStates(points_list, true,false,true,true,x,y);
+    if (x > 0 && (x < end_.getX())) {
+        if ((y > 0) && (y < end_.getY())) {
+            addStates(points_list, true,true,true,true,x,y);
+        } else if (y == end_.getY()) {
+            addStates(points_list, false,true,true,true,x,y);
+        } else if (y == 0) {
+            addStates(points_list, true,false,true,true,x,y);
+        } else {
+            throw "undefined Point object";
+        }
+    } else if (x == 0) {
+        if ((y > 0) && (y < end_.getY())) {
+            addStates(points_list, true,true,false,true,x,y);
+        } else if (y == end_.getY()) {
+            addStates(points_list, false,true,false,true,x,y);
+        } else if (y == 0) {
+            addStates(points_list, true,false,false,true,x,y);
+        } else {
+            throw "undefined Point object";
+        }
+    } else if (x == end_.getX()) {
+        if ((y > 0) && (y < end_.getY())) {
+            addStates(points_list, true,true,true,false,x,y);
+        } else if (y == end_.getY()) {
+            addStates(points_list, false,true,true,false,x,y);
+        } else if (y == 0) {
+            addStates(points_list, true,false,true,false,x,y);
+        } else {
+            throw "undefined Point object";
+        }
     } else {
-      throw "undefined Point object";
+        throw "undefined Point object";
     }
-  } else if (x == 0) {
-    if ((y > 0) && (y < end_.getY())) {
-      addStates(points_list, true,true,false,true,x,y);
-    } else if (y == end_.getY()) {
-      addStates(points_list, false,true,false,true,x,y);
-    } else if (y == 0) {
-      addStates(points_list, true,false,false,true,x,y);
-    } else {
-      throw "undefined Point object";
-    }
-  } else if (x == end_.getX()) {
-    if ((y > 0) && (y < end_.getY())) {
-      addStates(points_list, true,true,true,false,x,y);
-    } else if (y == end_.getY()) {
-      addStates(points_list, false,true,true,false,x,y);
-    } else if (y == 0) {
-      addStates(points_list, true,false,true,false,x,y);
-    } else {
-      throw "undefined Point object";
-    }
-  } else {
-    throw "undefined Point object";
-  }
-  // remove all walls
-  removeAllWalls(points_list);
+    // remove all walls
+    removeAllWalls(points_list);
 
-  return points_list;
+    return points_list;
 }
 
 void MatrixSearchable::removeAllWalls(list<Point> points_list) {

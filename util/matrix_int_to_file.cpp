@@ -8,7 +8,7 @@
 void MatrixIntToFile::write(Matrix<int> matrix, string file_name) {
     FILE *fp;
 
-    fp = fopen(file_name.c_str(), "a");
+    fp = fopen(file_name.c_str(), "w");
 
     if (fp == NULL) {
         perror("can't write matrix to file");
