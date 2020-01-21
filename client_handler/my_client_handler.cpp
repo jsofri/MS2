@@ -8,24 +8,28 @@
 using namespace std;
 
 void MyClientHandler::handleClient(int & client_socket) {
-  char buffer[BUFFER_SIZE];
-  string str;
+    list<string> lines_list;
+    char buffer[BUFFER_SIZE];
+    string str;
 
-  do {
-    int valread = read(client_socket , buffer, BUFFER_SIZE);
+    do {
+        int valread = read(client_socket , buffer, BUFFER_SIZE);
 
-    list<string> tmp_list = Stringer::stringListFromCharArray(buffer);
+        list<string> tmp_list = Stringer::stringListFromCharArray(buffer);
 
-    //add tmp_list to lines_list_
-    lines_list_.insert(lines_list_.end(), tmp_list.begin(), tmp_list.end());
+        //add tmp_list to lines_list
+        lines_list.insert(lines_list.end(), tmp_list.begin(), tmp_list.end());
 
-  } while (endNotEntered());
+    } while (endNotEntered(lines_list));
 
-  return setAndSolveMatrix();
+    str = setAndSolveMatrix(lines_list);
+
+    send(client_socket , str.c_str() , strlen(str.c_str()) , 0 );
+  //send solution to client
 }
 
-bool MyClientHandler::endNotEntered() {
-  string last_line = lines_list_.back();
+bool MyClientHandler::endNotEntered(list<string> lines_list) {
+  string last_line = lines_list.back();
   bool endIn = false;
 
   if (last_line.size() < 5) {
@@ -35,42 +39,37 @@ bool MyClientHandler::endNotEntered() {
   return endIn;
 }
 
-void MyClientHandler::setAndSolveMatrix() {
-  MatrixSearchable searchable = makeSearchable();
+string MyClientHandler::setAndSolveMatrix(list<string> lines_list) {
+    auto searchable = makeSearchable(lines_list);
+    string solution;
+    MatrixAdapter matrix_adapter;
 
-  if (file_cache_manager.exist(searchable)) {
-    return file_cache_manager.get(matrix);
-  } else {
-    solution = objectAdapter.solve(searchable);
-    file_cache_manager.insert(searchable, solution);
+    if (file_cache_manager.exist(&searchable)) {
+        solution =  file_cache_manager.get(&searchable);
+    } else {
+    solution = matrix_adapter.solve(searchable);
+    file_cache_manager.insert(&searchable, solution);
   }
 
-  //solve using cachemanager
-  //get solution
-  //enter it to cache
-  //return solution
+  return solution;
 }
 
-MatrixSearchable MyClientHandler::makeSearchable() {
+MatrixSearchable<Point> MyClientHandler::makeSearchable(list<string> lines_list) {
   MatrixBuilder matrix_builder;
   Matrix<int> matrix;
   list<string>::iterator iter;
 
   //make list to hold one line in each node
-  lines_list_ = Stringer::listOfLines(lines_list_);
+  lines_list = Stringer::listOfLines(lines_list);
 
-  matrix_builder.buildNXNMatrix(lines_list_);
+  matrix_builder.buildNXNMatrix(lines_list);
 
   matrix = matrix_builder.getMatrix();
 
-  iter = lines_list_.end();
+  iter = lines_list.end();
   --iter;//go to last string - "end\n"
   Point end = Stringer::pointFromString(*(--iter));
   Point start = Stringer::pointFromString(*(--iter));
 
-  return MatrixSearchable(matrix, start, end);
-}
-
-MyClientHandler::~MyClientHandler() {
-  delete(searchable_);
+  return MatrixSearchable<Point>(matrix, start, end);
 }

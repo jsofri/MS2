@@ -23,6 +23,12 @@ public:
         pushFilesToMap();
     }
 
+    /*FileCacheManager<K,V>(FileCacheManager & fcm) {
+        pushFilesToMap();
+    }*/
+
+    //FileCacheManager(const FileCacheManager&) = delete;
+
     void insert(K key, V value) {
         lock_guard<mutex> lock(locker_);
         hash_map_[key.toString()] = true;
@@ -30,7 +36,7 @@ public:
         objectToFile(key, value);//save object in a file
     }
 
-    V get(K & key) {
+    V get(K key) {
 
         if (exist(key)) {
             return fileToObject(key);
@@ -70,7 +76,7 @@ private:
         fstream file;
         string file_name = CACHE_DIRECTORY + to_string(key.toString());
 
-        file.open(file_name.c_str(), ios::out|ios::binary);
+        file.open(file_name.c_str(), ios::out);
 
         if(!file){
             throw "error in file opening";
@@ -87,7 +93,7 @@ private:
 
         file_name = CACHE_DIRECTORY + key.toString();
 
-        file.open(file_name.c_str() ,ios::in|ios::binary);
+        file.open(file_name.c_str() ,ios::in);
         if(!file){
             throw "Error in file opening";
         }
@@ -100,6 +106,7 @@ private:
 
         return object;
     }
+
     std::unordered_map<unsigned long, bool> hash_map_;
     mutex locker_;
 };

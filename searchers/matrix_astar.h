@@ -2,8 +2,8 @@
 // Created by rony on 17/01/2020.
 //
 
-#ifndef MS2_MATRIX_ASTAR_H
-#define MS2_MATRIX_ASTAR_H
+#ifndef MATRIX_ASTAR_H
+#define MATRIX_ASTAR_H
 
 #include "../objects/point.h"
 #include "searcher.h"
@@ -28,7 +28,7 @@ struct ComparePriority {
     }
 };
 
-class MatrixAStar: public Searcher<Point, string> {
+class MatrixAStar : public Searcher<Point, string> {
 public:
     MatrixAStar() = default;
     string search(Searchable<Point> &) override;
@@ -46,4 +46,4 @@ private:
 };
 
 
-#endif //MS2_MATRIX_ASTAR_H
+#endif //MATRIX_ASTAR_H

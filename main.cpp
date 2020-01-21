@@ -2,7 +2,6 @@
 // Created by rony on 13/01/2020.
 //
 
-#include "global_vars.h"
 #include "server/my_serial_server.h"
 #include "client_handler/my_test_client_handler.h"
 #include "objects/matrix.h"
@@ -17,6 +16,7 @@
 #include "searchers/searcher.h"
 #include <list>
 #include "util/print_to_file.h"
+#include "global_vars.h"
 
 #define PORT 5402
 #define MIN_RANK 10
@@ -28,6 +28,9 @@
 #define GENERATE_RANDOM true
 
 using namespace server_side;
+using namespace std;
+
+auto file_cache_manager = FileCacheManager<Searchable<Point>*, string>();
 
 // set global vars
 auto cache_manager_ = FileCacheManager<Searchable<Point>, string>();

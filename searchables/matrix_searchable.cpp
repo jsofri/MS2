@@ -117,3 +117,10 @@ int MatrixSearchable::getCost(Point p) {
     }
     return matrix_[p.getX()][p.getY()];
 }
+
+string MatrixSearchable::toString() {
+    string hash = matrix_.toString();
+    hash += start_.toString();
+    hash += end_.toString();
+    return hash;
+}
