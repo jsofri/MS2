@@ -76,6 +76,11 @@ class Matrix {
   vector<vector<T>>& getMatrix() {
       return matrix_;
   }
+
+  string toString() {
+      hash<Matrix> hash_matrix;
+      return to_string(hash_matrix(this));
+  }
 };
 
 #endif //OBJECTS_MATRIX_H_

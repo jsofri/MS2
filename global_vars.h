@@ -9,6 +9,6 @@
 #include "searchables/searchable.h"
 #include "cache_manager/file_cache_manager.h"
 
-extern FileCacheManager<Searchable<Point>, bool>* cache_manager_;
+extern FileCacheManager<Searchable<Point>, string> cache_manager_;
 
 #endif //MS2_GLOBAL_VARS_H

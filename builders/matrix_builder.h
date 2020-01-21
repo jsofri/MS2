@@ -9,6 +9,9 @@
 #include "string"
 #include "../util/stringer.h"
 
+#define RAND 3
+#define RAND_WALL 20
+#define MAX_LINE_LENGTH 2048
 #define REGEX "[-]{0,1}[\\d]+[.]{0,1}[\\d]{0,}"
 
 //Matrix Adapter can make matrix object from string
@@ -22,7 +25,10 @@ class MatrixBuilder {
   void addRow(string);
   void buildNXNMatrix(list<string>);
   Matrix<int> getMatrix();
- private:
+  static Matrix<int> fromFile(string);
+  static Matrix<int> randomMatrix(int);
+  static void writeToFile(Matrix<int>, string);
+private:
   void setValuesInVector(vector<string> &);
   Matrix<int> int_matrix_;
 };
