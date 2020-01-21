@@ -96,3 +96,14 @@ list<string> Stringer::listOfLines(list<string> input) {
 
   return output;
 }
+
+//get a string and return a point
+Point Stringer::pointFromString(string str) {
+  vector<string> coordinates = doRegex(str, REGEX);
+  int i, j;
+
+  i = stoi(coordinates[0]);
+  j = stoi(coordinates[1]);
+
+  return Point(i,j);
+}

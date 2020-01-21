@@ -12,6 +12,7 @@
 #include "../objects/matrix.h"
 #include "../builders/matrix_builder.h"
 #include "../searchables/searchable.h"
+#include "../searchables/matrix_searchable.h"
 
 #define END "end\n"
 
@@ -21,7 +22,7 @@ class MyClientHandler : public ClientHandler {
  private:
   bool endNotEntered();
   void setAndSolveMatrix();
-  Searchable<Point>* makeSearchable();
+  MatrixSearchable makeSearchable();
   list<string> lines_list_;
 };
 

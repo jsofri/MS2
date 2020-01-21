@@ -36,7 +36,7 @@ bool MyClientHandler::endNotEntered() {
 }
 
 void MyClientHandler::setAndSolveMatrix() {
-  Searchable<Point> * searchable = makeSearchable();
+  MatrixSearchable searchable = makeSearchable();
 
   if (file_cache_manager.exist(searchable)) {
     return file_cache_manager.get(matrix);
@@ -44,15 +44,17 @@ void MyClientHandler::setAndSolveMatrix() {
     solution = objectAdapter.solve(searchable);
     file_cache_manager.insert(searchable, solution);
   }
+
   //solve using cachemanager
   //get solution
   //enter it to cache
   //return solution
 }
 
-Searchable<Point>* MyClientHandler::makeSearchable() {
+MatrixSearchable MyClientHandler::makeSearchable() {
   MatrixBuilder matrix_builder;
   Matrix<int> matrix;
+  list<string>::iterator iter;
 
   //make list to hold one line in each node
   lines_list_ = Stringer::listOfLines(lines_list_);
@@ -61,7 +63,12 @@ Searchable<Point>* MyClientHandler::makeSearchable() {
 
   matrix = matrix_builder.getMatrix();
 
+  iter = lines_list_.end();
+  --iter;//go to last string - "end\n"
+  Point end = Stringer::pointFromString(*(--iter));
+  Point start = Stringer::pointFromString(*(--iter));
 
+  return MatrixSearchable(matrix, start, end);
 }
 
 MyClientHandler::~MyClientHandler() {
