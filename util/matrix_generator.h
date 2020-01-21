@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include "cstring"
-#include <objects/matrix.h>
+#include "../objects/matrix.h"
 
 #define RAND 3
 #define RAND_WALL 20

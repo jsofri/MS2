@@ -5,16 +5,16 @@
 #ifndef MS2_MATRIX_ASTAR_H
 #define MS2_MATRIX_ASTAR_H
 
-#include <objects/point.h>
+#include "../objects/point.h"
 #include "searcher.h"
 #include <string>
 #include <queue>
 #include <vector>
 #include <unordered_map>
-#include <objects/point.h>
-#include <objects/amdc.h>
-#include <objects/matrix.h>
-#include <objects/priority_q.h>
+#include "../objects/point.h"
+#include "../objects/amdc.h"
+#include "../objects/matrix.h"
+#include "../objects/priority_q.h"
 
 #define TYPE AMDC*
 
