@@ -2,8 +2,8 @@
 // Created by yehonatan on 14/01/2020.
 //
 
-#ifndef MS2_SEARCHERS_MATRIX_BFS_H_
-#define MS2_SEARCHERS_MATRIX_BFS_H_
+#ifndef SEARCHERS_MATRIX_BFS_H_
+#define SEARCHERS_MATRIX_BFS_H_
 
 
 #include <queue>
@@ -31,4 +31,4 @@ private:
   //Searchable<Point> * searchable_;
 };
 
-#endif //MS2_SEARCHERS_MATRIX_BFS_H_
+#endif //SEARCHERS_MATRIX_BFS_H_

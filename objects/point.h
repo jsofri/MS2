@@ -2,8 +2,8 @@
 // Created by yehonatan on 14/01/2020.
 //
 
-#ifndef MS2_OBJECTS_POINT_H_
-#define MS2_OBJECTS_POINT_H_
+#ifndef OBJECTS_POINT_H_
+#define OBJECTS_POINT_H_
 
 #define NO_POINT Point(-1, -1)
 #include <string>
@@ -23,4 +23,4 @@ class Point {
   unsigned int y_;
 };
 
-#endif //MS2_OBJECTS_POINT_H_
+#endif //OBJECTS_POINT_H_

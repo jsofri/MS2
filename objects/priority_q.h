@@ -2,8 +2,8 @@
 // Created by rony on 18/01/2020.
 //
 
-#ifndef MS2_PRIORITY_Q_H
-#define MS2_PRIORITY_Q_H
+#ifndef PRIORITY_Q_H
+#define PRIORITY_Q_H
 
 #include <iostream>
 #include <queue>
@@ -22,4 +22,4 @@ public:
 };
 
 
-#endif //MS2_PRIORITY_Q_H
+#endif //PRIORITY_Q_H

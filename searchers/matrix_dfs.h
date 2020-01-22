@@ -2,8 +2,8 @@
 // Created by rony on 14/01/2020.
 //
 
-#ifndef MS2_MATRIX_DFS_H
-#define MS2_MATRIX_DFS_H
+#ifndef MATRIX_DFS_H
+#define MATRIX_DFS_H
 
 
 #include "searcher.h"
@@ -28,4 +28,4 @@ private:
 };
 
 
-#endif //MS2_MATRIX_DFS_H
+#endif //MATRIX_DFS_H
