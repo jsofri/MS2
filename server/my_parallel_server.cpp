@@ -65,13 +65,9 @@ void MyParallelServer::acceptClients(int socketfd, sockaddr_in& address, ClientH
     // set the time out
     struct timeval tv;
     tv.tv_sec = TIME_OUT;
+    setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
 
     while (keep_running_) {
-        // check if timeout
-        if (setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv) == 0) {
-            cout << "timout!" << endl;
-            break;
-        }
 
         // accept client
         auto s = (struct sockaddr *) &address;
@@ -79,12 +75,12 @@ void MyParallelServer::acceptClients(int socketfd, sockaddr_in& address, ClientH
         client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
         cout << "trying to accept" << endl;
         if (client_socket != -1) {
+
             //make new thread and add it to list and run it
             std::thread new_thread(&MyParallelServer::runOneClient, this, client_handler, client_socket);
             thread_list_.push_back(std::move(new_thread));
             cout << "New client connected to server" << endl;
         } else {
-            perror("Accept error");
             break;
         }
     }

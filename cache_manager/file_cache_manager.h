@@ -69,7 +69,8 @@ private:
             while ((ent = readdir (dir)) != NULL) {
                 // skip `.` and `...`
                 if (ent -> d_name[0] != '.') {
-                    hash_map_[stol(ent->d_name)] = true;
+                    string name = ent->d_name;
+                    hash_map_[stoul(name)] = true;
                 }
             }
             closedir (dir);
