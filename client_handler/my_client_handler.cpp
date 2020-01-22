@@ -30,10 +30,14 @@ void MyClientHandler::handleClient(int & client_socket) {
 }
 
 bool MyClientHandler::endNotEntered(list<string> lines_list) {
-  string last_line = lines_list.back();
+  string last_line;
   bool endIn = false;
 
-  if (last_line.length() <= 5) {
+    if(lines_list.size() > 0) {
+       last_line = lines_list.back();
+    }
+
+  if (last_line != "" && last_line.length() <= 5) {
     endIn = (last_line.length() == strspn(last_line.c_str(), END));
   }
 

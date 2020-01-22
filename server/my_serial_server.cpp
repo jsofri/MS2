@@ -43,7 +43,7 @@ void MySerialServer::run(int & port, ClientHandler* & client_handler){
     }
 
     //making socket listen to the port
-    if (listen(socketfd, MAX_CLIENTS) == -1) { //can also set to SOMAXCON (max connections)
+    if (listen(socketfd, SOMAXCONN) == -1) { //can also set to SOMAXCON (max connections)
         throw "Error during listening command";
     }
 
@@ -63,6 +63,12 @@ void MySerialServer::run(int & port, ClientHandler* & client_handler){
 void MySerialServer::acceptClients(int socketfd, sockaddr_in& address, ClientHandler* client_handler) {
     int client_socket;
 
+    // set the time out
+    struct timeval tv;
+    tv.tv_sec = TIME_OUT;
+    tv.tv_usec = 0;
+    setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+
     while (keep_running_) {
         // accept client
         auto s = (struct sockaddr *) &address;
@@ -72,7 +78,7 @@ void MySerialServer::acceptClients(int socketfd, sockaddr_in& address, ClientHan
         if (client_socket != -1) {
             client_handler -> handleClient(client_socket);
         } else {
-            perror("Accept error");
+            break;
         }
 
         cout << "Client ended the connection" << endl;

@@ -44,7 +44,7 @@ void MyParallelServer::run(int & port, ClientHandler* & client_handler){
     }
 
     //making socket listen to the port
-    if (listen(socketfd, MAX_CLIENTS) == -1) { //can also set to SOMAXCON (max connections)
+    if (listen(socketfd, SOMAXCONN) == -1) { //can also set to SOMAXCON (max connections)
         throw "Error during listening command";
     }
 
@@ -53,6 +53,7 @@ void MyParallelServer::run(int & port, ClientHandler* & client_handler){
 
     for(auto iter = thread_list_.begin(); iter != thread_list_.end(); iter++) {
         (*iter).join();
+        cout<<"made one join" <<endl;
     }
 
     // close listening server socket
@@ -65,6 +66,7 @@ void MyParallelServer::acceptClients(int socketfd, sockaddr_in& address, ClientH
     // set the time out
     struct timeval tv;
     tv.tv_sec = TIME_OUT;
+    tv.tv_usec = 0;
     setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
 
     while (keep_running_) {

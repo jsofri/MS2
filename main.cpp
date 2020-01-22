@@ -20,7 +20,7 @@
 #include "client_handler/my_client_handler.h"
 #include "util/print_to_file.h"
 
-#define PORT 5402
+#define PORT 5403
 #define MIN_RANK 10
 #define MAX_RANK 50
 #define REQUIRED_MATRICES 10
