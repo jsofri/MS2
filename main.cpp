@@ -2,6 +2,7 @@
 // Created by rony on 13/01/2020.
 //
 
+#include "global_vars.h"
 #include "server/my_serial_server.h"
 #include "client_handler/my_test_client_handler.h"
 #include "objects/matrix.h"
@@ -15,25 +16,25 @@
 #include "searchers/matrix_best_fs.h"
 #include "searchers/searcher.h"
 #include <list>
+#include <server/my_parallel_server.h>
+#include <client_handler/my_client_handler.h>
 #include "util/print_to_file.h"
-#include "global_vars.h"
 
-#define PORT 5402
+#define PORT 5403
 #define MIN_RANK 10
 #define MAX_RANK 50
 #define REQUIRED_MATRICES 10
 #define JUMP 4
 #define MATRIX_DIRECTORY "matrices_output/"
 #define SEARCHER_PAIR std::pair<Searcher<Point, string>*, string>
-#define GENERATE_RANDOM true
+#define GENERATE_RANDOM false
 
 using namespace server_side;
 using namespace std;
 
-auto file_cache_manager = FileCacheManager<Searchable<Point>*, string>();
-
 // set global vars
-auto cache_manager_ = FileCacheManager<Searchable<Point>, string>();
+FileCacheManager<Searchable<Point>*, string> file_cache_manager = FileCacheManager<Searchable<Point>*, string>();
+
 
 bool endNotEntered(list<string> lines_list_) {
   string last_line = lines_list_.back();
@@ -129,18 +130,19 @@ void hoo(){
   cout << matrix.getSize().second << endl;
 }
 
-int main() {
-    foo();
-    return 0;
-}
 
 /**
  * Testing part 2
  */
-int mainPart2() {
-    MySerialServer sersev;
+int main() {
+    // alert so we won't forget
+    if (PORT != 5600) {
+        cerr << "Attention: Port is not 5600" << endl;
+    }
+
+    MyParallelServer sersev;
     try {
-        sersev.open(PORT, new MyTestClientHandler());
+        sersev.open(PORT, new MyClientHandler());
         sersev.close();
     } catch (const char* e) {
         cerr << e << endl;

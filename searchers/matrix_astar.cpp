@@ -40,7 +40,7 @@ void MatrixAStar::init () {
     initial_amdc.weightH = priority;
     //auto pr = pair<double, AMDC&>(priority, initial_amdc);
     open_.push_front(&initial_amdc);
-    open_map_[initial.toString()] = open_.begin();
+    open_map_[initial.to_string()] = open_.begin();
     open_.sort();
 }
 
@@ -49,7 +49,7 @@ void MatrixAStar::runAStar() {
         traversed_vertex_counter_++;
 
         auto top = open_.front() -> myself;
-        // cout << top.toString() << " " << path_matrix_.getCell(top).weight << endl;
+        // cout << top.to_string() << " " << path_matrix_.getCell(top).weight << endl;
 
         // check if goal has been reached
         if (searchable_->isGoalState(top)) {
@@ -58,13 +58,13 @@ void MatrixAStar::runAStar() {
 
         // remove top from priority queue and map
         open_.pop_front();
-        open_map_.erase(top.toString());
+        open_map_.erase(top.to_string());
 
         // push neighbors
         pushNeighborsOf(top);
 
         // add to closed list
-        close_[top.toString()] = true;
+        close_[top.to_string()] = true;
     }
 
     throw "Error: Could not reach the destination.";
@@ -83,15 +83,15 @@ void MatrixAStar::pushNeighborsOf(Point p) {
             AMDC& neighbor_amdc = path_matrix_.getCell(neighbor);
             auto weight = p_amdc.weight + searchable_-> getCost(neighbor);
 
-            if (open_map_.count(neighbor.toString())) {
+            if (open_map_.count(neighbor.to_string())) {
                 if (neighbor_amdc.weight <= weight) {
                     continue;
                 }
-            } else if (close_.count(neighbor.toString())) {
+            } else if (close_.count(neighbor.to_string())) {
                 if (neighbor_amdc.weight <= weight) {
                     continue;
                 }
-                close_.erase(neighbor.toString());
+                close_.erase(neighbor.to_string());
                 addToOpen = true;
 
             } else {
@@ -100,7 +100,7 @@ void MatrixAStar::pushNeighborsOf(Point p) {
 
             if (addToOpen) {
                 open_.push_front(&neighbor_amdc);
-                open_map_[neighbor.toString()] = open_.begin();
+                open_map_[neighbor.to_string()] = open_.begin();
                 open_.sort();
             }
 

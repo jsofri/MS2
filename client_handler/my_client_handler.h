@@ -17,7 +17,7 @@
 #include "../searchables/matrix_searchable.h"
 #include "../global_vars.h"
 
-#define END "end\n"
+#define END "end\r\n"
 
 class MyClientHandler : public ClientHandler {
  public:
@@ -25,7 +25,7 @@ class MyClientHandler : public ClientHandler {
  private:
   bool endNotEntered(list<string>);
   string setAndSolveMatrix(list<string>);
-  MatrixSearchable<Point> makeSearchable(list<string>);
+  MatrixSearchable makeSearchable(list<string>);
 };
 
 #endif //CLIENT_HANDLER_MY_CLIENT_HANDLER_H_

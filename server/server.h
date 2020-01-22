@@ -7,6 +7,9 @@
 
 #include "../client_handler/client_handler.h"
 
+#define TIME_OUT 10
+#define MAX_CLIENTS 10
+
 namespace server_side {
     class Server {
     public:

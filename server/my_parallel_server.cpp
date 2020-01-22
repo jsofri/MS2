@@ -24,6 +24,8 @@ void MyParallelServer::run(int & port, ClientHandler* & client_handler){
 
     //create socket
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
+    // fcntl(socketfd, F_SETFL, O_NONBLOCK);
+
     if (socketfd == -1) {
         //error
         throw "Could not create a socket";
@@ -46,11 +48,6 @@ void MyParallelServer::run(int & port, ClientHandler* & client_handler){
         throw "Error during listening command";
     }
 
-    // set the time out
-    struct timeval tv;
-    tv.tv_sec = TIME_OUT;
-    setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
-
     // Server is now accepting clients
     acceptClients(socketfd, address, client_handler);
 
@@ -60,27 +57,36 @@ void MyParallelServer::run(int & port, ClientHandler* & client_handler){
 
     // close listening server socket
     ::close(socketfd);
-    close();
 }
 
 void MyParallelServer::acceptClients(int socketfd, sockaddr_in& address, ClientHandler* client_handler) {
     int client_socket;
 
+    // set the time out
+    struct timeval tv;
+    tv.tv_sec = TIME_OUT;
+
     while (keep_running_) {
+        // check if timeout
+        if (setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv) == 0) {
+            cout << "timout!" << endl;
+            break;
+        }
+
         // accept client
         auto s = (struct sockaddr *) &address;
         auto m = (socklen_t *) &address;
         client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
-
+        cout << "trying to accept" << endl;
         if (client_socket != -1) {
             //make new thread and add it to list and run it
             std::thread new_thread(&MyParallelServer::runOneClient, this, client_handler, client_socket);
-            thread_list_.push_back(new_thread);
+            thread_list_.push_back(std::move(new_thread));
+            cout << "New client connected to server" << endl;
         } else {
             perror("Accept error");
+            break;
         }
-
-        cout << "Client ended the connection" << endl;
     }
 }
 
