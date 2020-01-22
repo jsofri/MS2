@@ -76,12 +76,26 @@ class Matrix {
   vector<vector<T>>& getMatrix() {
       return matrix_;
   }
- 
-   string toString() {
-    hash<Matrix> hash_matrix;
 
-    return to_string(hash_matrix(this));
-  }
+    string to_string () {
+        string result;
+        for (auto row : matrix_) {
+            for (auto cell : row) {
+                result += std::to_string(cell);
+                result += ", ";
+            }
+            result += "\n";
+        }
+
+        return result;
+    }
+
+    unsigned long toHash() {
+        std::hash<std::string> hash_f;
+
+        return hash_f(this->to_string());
+    }
+
 };
 
 #endif //OBJECTS_MATRIX_H_

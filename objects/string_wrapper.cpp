@@ -4,7 +4,7 @@
 
 #include "string_wrapper.h"
 
-unsigned long StringWrapper::toString() {
+unsigned long StringWrapper::toHash() {
     std::hash<string> hash_f;
 
     return hash_f(value_);

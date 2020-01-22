@@ -118,9 +118,10 @@ int MatrixSearchable::getCost(Point p) {
     return matrix_[p.getX()][p.getY()];
 }
 
-string MatrixSearchable::toString() {
-    string hash = matrix_.toString();
-    hash += start_.toString();
-    hash += end_.toString();
-    return hash;
+unsigned long MatrixSearchable::toHash() {
+    std::hash<string> hash_f;
+    string hash = matrix_.to_string();
+    hash += start_.to_string();
+    hash += end_.to_string();
+    return hash_f(hash);
 }

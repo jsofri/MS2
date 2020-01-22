@@ -35,14 +35,14 @@ list<string> Stringer::stringListFromCharArray(char * array) {
     string str = "";
 
     //iterate on one line
-    for (;array[i] != '\n' && array[i] != '\0'; i++) {
+    for (;array[i] != '\n' && array[i] != '\r' && array[i] != '\0'; i++) {
       str += array[i];
     }
 
     notTerminate = array[i];
 
     if (str != "") {
-      list.push_back(str);
+      list.push_back(str +'\n');
     }
   }
 

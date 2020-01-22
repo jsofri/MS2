@@ -13,13 +13,14 @@
 #include "../solvers/string_reverser.h"
 #include "../util/stringer.h"
 #include "../cache_manager/file_cache_manager.h"
+#include "../global_vars.h"
 
 
 class MyTestClientHandler : public ClientHandler {
 public:
     void handleClient(int &);
 private:
-    FileCacheManager<StringWrapper, string> file_cache_manager_;
+    FileCacheManager<StringWrapper*, string> file_cache_manager_;
     StringReverser solver_;
 };
 

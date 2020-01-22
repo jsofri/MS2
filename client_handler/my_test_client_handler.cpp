@@ -27,11 +27,11 @@ void MyTestClientHandler::handleClient(int& client_socket) {
         StringWrapper string_wrapper(message);
 
         try {
-            solution = file_cache_manager_.get(string_wrapper);
+            solution = file_cache_manager_.get(&string_wrapper);
 
         } catch (const char * e) {
             solution = solver_.solve(string_wrapper);
-            file_cache_manager_.insert(string_wrapper, solution);
+            file_cache_manager_.insert(&string_wrapper, solution);
         }
 
         solution += '\n';

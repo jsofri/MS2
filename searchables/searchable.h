@@ -7,6 +7,7 @@
 
 
 #include "list"
+#include "string"
 
 
 template<typename P>
@@ -18,6 +19,7 @@ class Searchable {
   virtual std::list<P> getAllPossibleStates(P) = 0;
   virtual std::pair<unsigned int, unsigned int> getSize() = 0;
   virtual int getCost(P) = 0;
+  virtual unsigned long toHash() = 0;
 };
 
 #endif //SEARCHABLE_H_

@@ -16,7 +16,7 @@ std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC>& matrix, Point& star
 
     addWeight(amdc.weight);
     addDirection(amdc.parent, path_point);
-    point_map_[path_point.toString()] = true;
+    point_map_[path_point.to_string()] = true;
 
     path_point = matrix.getCell(path_point).parent;
   } while (path_point != start);
@@ -30,7 +30,7 @@ string MatrixSolutionAnalyst::printMarkedPath (Searchable<Point>& searchable) {
     string result;
     for (auto row : matrix_.getMatrix()) {
         for (auto amdc : row) {
-            if (point_map_.count(amdc.myself.toString())) {
+            if (point_map_.count(amdc.myself.to_string())) {
                 result += "*";
             }
             result += to_string(searchable.getCost(amdc.myself));

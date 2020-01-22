@@ -17,12 +17,10 @@
 #include "chrono"
 #include <string>
 #include <list>
-#define TIME_OUT 10
-#define MAX_CLIENTS 10
 
 using namespace std;
 
-class MyParallelServer : public Server {
+class MyParallelServer : public server_side::Server {
  public:
   void open(int, ClientHandler*);
   void close();

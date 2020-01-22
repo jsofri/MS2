@@ -2,17 +2,16 @@
 // Created by yehonatan on 19/01/2020.
 //
 
-
 #include "my_client_handler.h"
 
 using namespace std;
 
 void MyClientHandler::handleClient(int & client_socket) {
     list<string> lines_list;
-    char buffer[BUFFER_SIZE];
     string str;
 
     do {
+        char buffer[BUFFER_SIZE] = {0};
         int valread = read(client_socket , buffer, BUFFER_SIZE);
 
         list<string> tmp_list = Stringer::stringListFromCharArray(buffer);
@@ -24,19 +23,21 @@ void MyClientHandler::handleClient(int & client_socket) {
 
     str = setAndSolveMatrix(lines_list);
 
+    //send solution to client
     send(client_socket , str.c_str() , strlen(str.c_str()) , 0 );
-  //send solution to client
+
+    close(client_socket);
 }
 
 bool MyClientHandler::endNotEntered(list<string> lines_list) {
   string last_line = lines_list.back();
   bool endIn = false;
 
-  if (last_line.size() < 5) {
-    endIn = (last_line.size() == strspn(last_line.c_str(), END));
+  if (last_line.length() <= 5) {
+    endIn = (last_line.length() == strspn(last_line.c_str(), END));
   }
 
-  return endIn;
+  return !endIn;
 }
 
 string MyClientHandler::setAndSolveMatrix(list<string> lines_list) {
@@ -54,7 +55,7 @@ string MyClientHandler::setAndSolveMatrix(list<string> lines_list) {
   return solution;
 }
 
-MatrixSearchable<Point> MyClientHandler::makeSearchable(list<string> lines_list) {
+MatrixSearchable MyClientHandler::makeSearchable(list<string> lines_list) {
   MatrixBuilder matrix_builder;
   Matrix<int> matrix;
   list<string>::iterator iter;
@@ -71,5 +72,5 @@ MatrixSearchable<Point> MyClientHandler::makeSearchable(list<string> lines_list)
   Point end = Stringer::pointFromString(*(--iter));
   Point start = Stringer::pointFromString(*(--iter));
 
-  return MatrixSearchable<Point>(matrix, start, end);
+  return MatrixSearchable(matrix, start, end);
 }

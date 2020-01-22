@@ -13,7 +13,7 @@ using namespace std;
 class StringWrapper {
 public:
     explicit StringWrapper(string s) : value_(s) {}
-    unsigned long toString();
+    unsigned long toHash();
     string getValue();
 private:
     string value_;

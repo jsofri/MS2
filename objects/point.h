@@ -16,7 +16,8 @@ class Point {
   unsigned int getY();
   bool operator==(Point);
   bool operator!=(Point);
-  std::string toString();
+  std::string to_string();
+  unsigned long toHash();
  private:
   unsigned int x_;
   unsigned int y_;

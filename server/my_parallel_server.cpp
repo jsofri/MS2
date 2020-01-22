@@ -75,12 +75,11 @@ void MyParallelServer::acceptClients(int socketfd, sockaddr_in& address, ClientH
         if (client_socket != -1) {
             //make new thread and add it to list and run it
             std::thread new_thread(&MyParallelServer::runOneClient, this, client_handler, client_socket);
-            thread_list_.push_back(new_thread);
+            thread_list_.push_back(std::move(new_thread));
+            cout << "New client connected to server" << endl;
         } else {
             perror("Accept error");
         }
-
-        cout << "Client ended the connection" << endl;
     }
 }
 
