@@ -1,0 +1,710 @@
+commit 1dae5e7277b231fbfdb293602a875ee8f5d026a4
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Thu Jan 23 11:39:26 2020 +0200
+
+    checking exceptions
+
+commit 297e2568fa95aa1bbaed44c44cf7ccee539756d7
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Wed Jan 22 21:06:40 2020 +0200
+
+    it's aliveeeeee
+
+commit d17ba1d0ae8e24c8f7d7650633bc9406bee20356
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Wed Jan 22 20:28:37 2020 +0200
+
+    removing MS2_ from ifndef
+
+commit 86f575aec60a7cea8ef3a8840168c81fca74b6d9
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Wed Jan 22 20:27:13 2020 +0200
+
+    minor fixing
+    unsigned long bug fixes
+
+commit b3a3c4e1c5740e3d088a180a1539db3699f0be4a
+Merge: 25e497d 0ce060f
+Author: ronyut <ronyut@gmail.com>
+Date:   Wed Jan 22 18:08:33 2020 +0200
+
+    Merge pull request #27 from yehonatansofri/RonyBr
+    
+    Rony br
+
+commit 0ce060f1e4f01a42aa4e58193cf7786032bea15a
+Author: rony <ronyut@gmail.com>
+Date:   Wed Jan 22 18:07:56 2020 +0200
+
+    timeout still doesn't work
+
+commit 1c0427180eaf59246c0948945f83e67884905802
+Author: rony <ronyut@gmail.com>
+Date:   Wed Jan 22 13:35:23 2020 +0200
+
+    parallel server is working, without timeout
+
+commit 25e497d7ce0a08019fe424ee42e71ae73a62be03
+Merge: ff2430a aac6b81
+Author: ronyut <ronyut@gmail.com>
+Date:   Wed Jan 22 00:10:53 2020 +0200
+
+    Merge pull request #26 from yehonatansofri/RonyBr
+    
+    Rony br
+
+commit ff2430a08735a947a7a785301ea02c26c3cc136e
+Author: ronyut <ronyut@gmail.com>
+Date:   Wed Jan 22 00:10:39 2020 +0200
+
+    Delete matrix_generator.h
+
+commit 4114f815059f325d50f1b08de4bedca682976e60
+Author: ronyut <ronyut@gmail.com>
+Date:   Wed Jan 22 00:10:23 2020 +0200
+
+    Delete matrix_generator.cpp
+
+commit aac6b818d4e236933bded154aed15e5a6ad69f42
+Merge: eb97617 d6452bf
+Author: ronyut <ronyut@gmail.com>
+Date:   Wed Jan 22 00:06:16 2020 +0200
+
+    Merge pull request #25 from yehonatansofri/JhonnyBr
+    
+    Jhonny br
+
+commit d6452bf6263aedafcdcfa223b66306bcb0b1b3b9
+Merge: 2d6e1ef eb97617
+Author: ronyut <ronyut@gmail.com>
+Date:   Wed Jan 22 00:06:03 2020 +0200
+
+    Merge branch 'RonyBr' into JhonnyBr
+
+commit eb97617965f9eada47928528fb9f60b56b8b8fcf
+Author: rony <ronyut@gmail.com>
+Date:   Wed Jan 22 00:04:24 2020 +0200
+
+    added global vars and moved all matrix stuff to matrix builder
+
+commit 2d6e1ef5c344eb1115766bdeaf45223a71910d96
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Tue Jan 21 21:31:08 2020 +0200
+
+    parallel,
+    file cache manager
+
+commit 0d6faf80abca5879067326dd28f02b9b154056ce
+Author: rony <ronyut@gmail.com>
+Date:   Tue Jan 21 19:26:55 2020 +0200
+
+    added global vars
+
+commit 839e4a887f924e9433d9a95d417687b64bab7bf5
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 19:24:22 2020 +0200
+
+    Add files via upload
+
+commit 54cb477ffa987fa8f066ae81f890324999b3c74d
+Merge: c7b7548 36e1d5f
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 18:53:27 2020 +0200
+
+    Merge pull request #24 from yehonatansofri/JhonnyBr
+    
+    Jhonny br
+
+commit 36e1d5f3da05c0f619495afc80fd6742f0fb25fc
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Tue Jan 21 18:52:47 2020 +0200
+
+    deleted matrix client handler
+
+commit 8b4a747c70ecc4fe234a96bf6a1d122c5e75ea16
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Tue Jan 21 18:52:20 2020 +0200
+
+    modes in file cache manager
+    stuff in my client handler
+
+commit c7b75484fd3bf2c8dac575016b077ae130e8099c
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 18:27:53 2020 +0200
+
+    Delete matrix_client_handler.h
+
+commit cd6b9225be32f7040c65a6f5d7ae1d279a0fcaab
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 18:27:40 2020 +0200
+
+    Delete matrix_client_handler.cpp
+
+commit 137b2c47cae82046dcf110e7789fb3313c3c824c
+Merge: ad670ee 9b4b13c
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 18:21:49 2020 +0200
+
+    Merge pull request #23 from yehonatansofri/RonyBr
+    
+    Rony br
+
+commit ad670eec57e73d1e2681bc712f8f45f68e55fd24
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 18:03:57 2020 +0200
+
+    Update matrix.h
+
+commit 9b4b13cb77c66ee18b9bce40a6a71c3f0c132b23
+Author: rony <ronyut@gmail.com>
+Date:   Tue Jan 21 14:05:33 2020 +0200
+
+    merge is complete
+
+commit b0f0e22b85de36b318c5f6e421433cd7aa6f545a
+Merge: a711402 ae1f26d
+Author: rony <ronyut@gmail.com>
+Date:   Tue Jan 21 13:05:11 2020 +0200
+
+    irrelvant changes
+
+commit a711402585a5a2c0aef62fd85e9a66763a5ac9d5
+Author: rony <ronyut@gmail.com>
+Date:   Tue Jan 21 13:01:59 2020 +0200
+
+    added buildNXNMatrix
+
+commit ae1f26d73332f1b4eff8eadc9c0be9013211863f
+Merge: bdad515 d616e02
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 12:24:33 2020 +0200
+
+    Merge pull request #22 from yehonatansofri/RonyBr
+    
+    Rony br
+
+commit d616e0258c5906d126f68f3b44e60335a3cc1161
+Merge: ea7f979 bdad515
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 12:24:18 2020 +0200
+
+    Merge branch 'master' into RonyBr
+
+commit bdad5159cf7ad067ce9599bc010868804db076f7
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 11:39:56 2020 +0200
+
+    Add files via upload
+
+commit ea7f979a6124b6af0b7b94f5bd599b1f9a655d9d
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 11:39:21 2020 +0200
+
+    Delete Experiment Results.pdf
+
+commit da6ad9a0028fac63fa344909826e24459ba41eea
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 11:17:58 2020 +0200
+
+    Add files via upload
+
+commit a2aa03474a0394bde56049e0d8796138645d9bbc
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:50:41 2020 +0200
+
+    Delete s
+
+commit 04aaba5de249a7c67e84399d6b6e8e791df803c7
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:50:15 2020 +0200
+
+    Update vector_solution_analyst.cpp
+
+commit 55ec1792dab2ad8d9b6e09e542e2e81bff4159d8
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:48:49 2020 +0200
+
+    Update vector_solution_analyst.h
+
+commit 7b368c80bfaa79e18eb3ad993f69194fd9422282
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:45:58 2020 +0200
+
+    Rename searchers/vector_solution_analyst.cpp to searchers/analysts/vector_solution_analyst.cpp
+
+commit 9a69f8e7f4301de8a437ef4ffe1c706d9ef96535
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:45:53 2020 +0200
+
+    Rename searchers/solution_analyst.cpp to searchers/analysts/solution_analyst.cpp
+
+commit c39be5d8783b7fdb8b2fa9d5db0e624d9aac9392
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:45:47 2020 +0200
+
+    Rename searchers/matrix_solution_analyst.h to searchers/analysts/matrix_solution_analyst.h
+
+commit 757f796ee369fa90de32f15233889001fb8e2b2d
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:45:42 2020 +0200
+
+    Rename searchers/vector_solution_analyst.h to searchers/analysts/vector_solution_analyst.h
+
+commit 66454cff2c63cf38a9b3997ceb05f7cd2e6282e0
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:45:01 2020 +0200
+
+    Rename searchers/matrix_solution_analyst.cpp to searchers/analysts/matrix_solution_analyst.cpp
+
+commit 0a2bc18de68ef53ce1ac2d2a330e6af1a18050b4
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:44:14 2020 +0200
+
+    Create s
+
+commit 48bd18151c4f6d7ebe0276560aaa98b76b03175f
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:43:57 2020 +0200
+
+    Delete s
+
+commit 3334c5ab329f2dac9d63ae98b7b4f8d2b0bffda6
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:43:41 2020 +0200
+
+    Create s
+
+commit a8d02997271bdbc4748141bba9a3256c8233772d
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:40:28 2020 +0200
+
+    Update matrix_solution_analyst.cpp
+
+commit 163c349937eff770c4cc5937b267efcc1b4f32be
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:37:21 2020 +0200
+
+    Update matrix_searchable.cpp
+
+commit 37f625127d7d7543292019ea134184cab8f3f78d
+Author: rony <ronyut@gmail.com>
+Date:   Tue Jan 21 10:30:59 2020 +0200
+
+    updated from Johnny
+
+commit 8e548c5b2a1cfa46e0c405852d52cd63a506b298
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:29:05 2020 +0200
+
+    Update matrix_generator.h
+
+commit 588f88da7111ea3f753fa32ec3f3ba70fec879d3
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 10:28:05 2020 +0200
+
+    Delete PriorityQ.h
+
+commit 9989fa43145ff605a08306d2aed247124e2db216
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:27:23 2020 +0200
+
+    Update matrix_generator.cpp
+
+commit cd04f863caea46463ee8a8798cb9b4d9853ad22f
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 10:26:16 2020 +0200
+
+    Update amdc.h
+
+commit 7c7aa7137b4a577f2253abfa2cbb1268fa30acff
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 10:25:16 2020 +0200
+
+    Update PriorityQ.h
+
+commit 0ae4fe23cdd8069afb9eb7db8d3f5c960a83ac33
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:24:38 2020 +0200
+
+    Update matrix_solution_analyst.h
+
+commit e640a320ec9a50a334bbe84e8ea9590f4db28aee
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:22:45 2020 +0200
+
+    Update matrix_best_fs.h
+
+commit 925cc9d1a79a27ce1e1adf5f3b570aaab5266091
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 21 10:20:25 2020 +0200
+
+    Update matrix_astar.h
+
+commit 83fa0576896235c73b264468e0141a8c5abb300f
+Author: rony <ronyut@gmail.com>
+Date:   Tue Jan 21 10:03:30 2020 +0200
+
+    matrices outputs + _docs + main updated + cache manager updated + a* is done and tested
+
+commit dec9770ef5cb3d48cbac148e3fc725a7ef0e384a
+Merge: 64f46da c5955f5
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 21 09:58:27 2020 +0200
+
+    Merge pull request #20 from yehonatansofri/JhonnyBr
+    
+    Jhonny br
+
+commit c5955f529d629e46f3ef6f268bb41c740c3a6a64
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Tue Jan 21 09:54:41 2020 +0200
+
+    working on `MyClientHandler`
+    new method in stringer
+    `MatrixSearchable` now holds a `Matrix<int>`, not a `Matrix<int>*`
+
+commit 7a2f7f2a03ed7ba1aa83f036c17b501c2984170a
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Mon Jan 20 23:03:17 2020 +0200
+
+    new method in stringer
+    new constructor to matrix_searchable
+    functionality in myclienthandler
+
+commit df33dfacc4c3a77ddffb62e9e6daee4c385d5aa5
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Mon Jan 20 15:14:00 2020 +0200
+
+    started my_client_handler
+    some changes and new method in stringer
+
+commit 64f46da08b9ab19926b0f16564cc63e21b3953a4
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Sun Jan 19 18:34:03 2020 +0200
+
+    Add files via upload
+
+commit ac7e83028e00fefbf7e9bbbca85e4ed2a785f4b0
+Merge: 4ccacc3 03a6dba
+Author: rony <ronyut@gmail.com>
+Date:   Sun Jan 19 17:11:46 2020 +0200
+
+    another irrelavant change in MatrixBuilder
+
+commit 4ccacc3ac3bd5122d66949c77b8dd20031ba17b9
+Author: rony <ronyut@gmail.com>
+Date:   Sun Jan 19 17:09:47 2020 +0200
+
+    changed to MatrixBuilder class name
+
+commit 03a6dba685bbb7f65c607b79c4ead3ae1266bcb5
+Merge: 74c4dd3 01054cb
+Author: ronyut <ronyut@gmail.com>
+Date:   Sun Jan 19 17:07:51 2020 +0200
+
+    Merge pull request #16 from yehonatansofri/RonyBr
+    
+    Rony br
+
+commit 01054cb16f504fa81ba02e4b3e0f76b0e035aa97
+Merge: bf5a5a6 74c4dd3
+Author: ronyut <ronyut@gmail.com>
+Date:   Sun Jan 19 17:07:40 2020 +0200
+
+    Merge branch 'master' into RonyBr
+
+commit bf5a5a6304acc0fd8cb0ecc9f45e68b023c3ccb3
+Author: rony <ronyut@gmail.com>
+Date:   Sun Jan 19 16:50:00 2020 +0200
+
+    MatrixSearchable: added  method
+
+commit 74c4dd39924738802ed3071d27bb7c4cb5b38f9b
+Merge: 8258202 f9be263
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Sun Jan 19 16:36:50 2020 +0200
+
+    Merge pull request #15 from yehonatansofri/JhonnyBr
+    
+    Jhonny br
+
+commit 627d8b313eb7b6984ee3507743d455a497801557
+Author: rony <ronyut@gmail.com>
+Date:   Sun Jan 19 16:35:38 2020 +0200
+
+    changed builder folder name and filenames
+
+commit f9be26337a719a86567fd461b7b097170157a1ed
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Sun Jan 19 16:34:30 2020 +0200
+
+    folders
+
+commit 996920f860b36b97d5fb489168a80c49476c1f15
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Sat Jan 18 18:30:30 2020 +0200
+
+    added a few classes
+
+commit a0c7aa62ba04d9303ee0669f3be3760f318986a9
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Sat Jan 18 18:28:48 2020 +0200
+
+    best first search algorithm.
+    union of methods in solution analyst.
+    adding some methods to point.
+    adding BFSDN struct.
+
+commit 77d7dc963e1151d251c320c144ad39c36ec089fb
+Author: rony <ronyut@gmail.com>
+Date:   Sat Jan 18 14:21:11 2020 +0200
+
+    A* algo is done and tested + added methods to multiple classes
+
+commit 8258202301a1372be1cd7004bc96c07463aec849
+Author: ronyut <ronyut@gmail.com>
+Date:   Thu Jan 16 23:05:09 2020 +0200
+
+    Update README.md
+
+commit 1336981cb761f9393d360646c5a3fdbb3569b9cd
+Author: ronyut <ronyut@gmail.com>
+Date:   Thu Jan 16 22:15:16 2020 +0200
+
+    Update README.md
+
+commit dbbab742a2c28a4bb945d752ebf84452d1453427
+Author: ronyut <ronyut@gmail.com>
+Date:   Thu Jan 16 22:09:27 2020 +0200
+
+    Update README.md
+
+commit 9d00f297f782eec6fd2bbebcee0151e154f5ed43
+Author: ronyut <ronyut@gmail.com>
+Date:   Thu Jan 16 21:18:34 2020 +0200
+
+    Update README.md
+
+commit 552a597f725f516e04c7cbcfec9181eca61ab64a
+Author: ronyut <ronyut@gmail.com>
+Date:   Thu Jan 16 21:16:43 2020 +0200
+
+    Create README.md
+
+commit 473857a48eb543721c027a5db6b3dd8d68d7157a
+Merge: 883f28a 0c17193
+Author: rony <ronyut@gmail.com>
+Date:   Thu Jan 16 16:44:07 2020 +0200
+
+    accepted master - dfs and bfd tested and done
+
+commit 883f28a277440edb34098700b30064d69ec6b3c7
+Author: rony <ronyut@gmail.com>
+Date:   Thu Jan 16 16:24:41 2020 +0200
+
+    minor and irrelevant changes
+
+commit 0c171930c8823895c3794130c6bb03f75babd2b6
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Thu Jan 16 16:19:26 2020 +0200
+
+    minimal documentation
+
+commit 2a4d3ce30deec9670332c8fa3c9d8664d2dcb6c3
+Merge: a079005 02eb698
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Thu Jan 16 16:10:37 2020 +0200
+
+    Merge pull request #11 from yehonatansofri/JhonnyBr
+    
+    dfs and bfs work well
+
+commit 02eb698195e6b9e92d6a532ef86c2747b4e9c847
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Thu Jan 16 16:08:15 2020 +0200
+
+    dfs and bfs work well
+
+commit a079005a8f7b57ee9cf2834e55a70deb2ac7b005
+Merge: c30b11f 12e0669
+Author: ronyut <ronyut@gmail.com>
+Date:   Thu Jan 16 08:54:00 2020 +0200
+
+    Merge pull request #8 from yehonatansofri/RonyBr
+    
+    Rony br
+
+commit 12e0669ff86aaf0d524866063065c6ae264e765c
+Merge: dd18aac c30b11f
+Author: ronyut <ronyut@gmail.com>
+Date:   Thu Jan 16 08:53:46 2020 +0200
+
+    Merge branch 'master' into RonyBr
+
+commit c30b11f6a221ae4f37ef97809aed8b06e0b1f49c
+Merge: 948be15 263df33
+Author: ronyut <ronyut@gmail.com>
+Date:   Thu Jan 16 08:46:43 2020 +0200
+
+    Merge pull request #7 from yehonatansofri/JhonnyBr
+    
+    bfs, matrix solution analyst, matrix searchable,
+
+commit dd18aac328bc418ccfeeb806f8e201442af25fbf
+Author: rony <ronyut@gmail.com>
+Date:   Thu Jan 16 08:43:01 2020 +0200
+
+    changed file names
+
+commit 263df33089353abe871685c5eac729f192f5c7ab
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Thu Jan 16 08:41:07 2020 +0200
+
+    bfs, matrix solution analyst, matrix searchable,
+    all done but not debugged
+
+commit 216f195791b884d0ddece65a211b1e6705bd536b
+Author: rony <ronyut@gmail.com>
+Date:   Wed Jan 15 13:25:05 2020 +0200
+
+    server timeout fixed
+
+commit 39c23450fd38255eb32d4d8cd4d1c3f1f9e51af3
+Merge: ac837d6 948be15
+Author: rony <ronyut@gmail.com>
+Date:   Wed Jan 15 13:20:36 2020 +0200
+
+    dfs is done
+
+commit ac837d643b4ebe9fb159ea58f5f1067c8e9dd610
+Author: rony <ronyut@gmail.com>
+Date:   Wed Jan 15 10:58:44 2020 +0200
+
+    started working on DFS
+
+commit 948be15860ac9c81bb46adc90b80f21f1656a028
+Merge: 2ce23fa 1339456
+Author: ronyut <ronyut@gmail.com>
+Date:   Wed Jan 15 10:57:33 2020 +0200
+
+    Merge pull request #5 from yehonatansofri/JhonnyBr
+    
+    Jhonny br
+
+commit 133945683395d568f62c3dd2107be3d357763697
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Wed Jan 15 10:31:16 2020 +0200
+
+    made matrix to be template
+    made operator == in point
+    started BFS interface & matrix class
+
+commit 47f1f289669087dcba4dc293049458ad26fb73c8
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Tue Jan 14 20:48:35 2020 +0200
+
+    Started doing bfs
+
+commit 9d5e41568633d7c1f57e54de99a8f662208d5130
+Author: rony <ronyut@gmail.com>
+Date:   Tue Jan 14 18:52:37 2020 +0200
+
+    merged from john
+
+commit 2ce23faded8fe25a7fbc349866db8987a658efd3
+Merge: fa075b2 84b1ea5
+Author: ronyut <ronyut@gmail.com>
+Date:   Tue Jan 14 18:49:10 2020 +0200
+
+    Merge pull request #4 from yehonatansofri/JhonnyBr
+    
+    new classes
+
+commit 84b1ea508a3efc80772b2075a16a686eb326ec96
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Tue Jan 14 18:29:37 2020 +0200
+
+    new interfaces
+    Matrix object is done
+
+commit fa075b27107ef2bff1bfe5c61257b9128d15d61e
+Merge: c8a0528 a845fb0
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Tue Jan 14 08:18:02 2020 +0200
+
+    Merge pull request #2 from yehonatansofri/RonyBr
+    
+    Rony br
+
+commit a845fb081af9a0da1a433aeb6ecc355fc3d955d5
+Author: rony <ronyut@gmail.com>
+Date:   Mon Jan 13 19:41:35 2020 +0200
+
+    part 2 is done
+
+commit 782d0c025f9302061e959100a5ed3559a81d6bfb
+Merge: 5d5d47d c8a0528
+Author: rony <ronyut@gmail.com>
+Date:   Mon Jan 13 16:20:57 2020 +0200
+
+    merged master to rony
+
+commit 5d5d47d863589fced9eeb4bd1d5783856c00bf6b
+Author: rony <ronyut@gmail.com>
+Date:   Mon Jan 13 16:19:14 2020 +0200
+
+    -deleted irrelevant files
+
+commit 6652e66f7e24a6298060ee0bb5056c6321806401
+Author: rony <ronyut@gmail.com>
+Date:   Mon Jan 13 16:11:27 2020 +0200
+
+    added some files - irrelevant
+
+commit c8a0528e5691e189e6b4a1dd5ed2cd8cdbe76674
+Merge: 18be730 dfd9de1
+Author: ronyut <ronyut@gmail.com>
+Date:   Mon Jan 13 16:04:04 2020 +0200
+
+    Merge pull request #1 from yehonatansofri/JhonnyBr
+    
+    Jhonny br
+
+commit dfd9de1650e6b4bb7a2cb41735171c394bc11c8b
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Mon Jan 13 15:49:59 2020 +0200
+
+    a lot of staff
+    part 2 in mile stone 2
+    almost combleted
+
+commit b7eab2b25ccdf91bef219c09055ee05f1b37f356
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Sun Jan 12 18:33:09 2020 +0200
+
+    started working on SmartCacheManager
+
+commit 40e0c58d577a91fca49f6334c7299b6248e54b6d
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Sun Jan 12 17:31:46 2020 +0200
+
+    worked on MyClientHandler, MyTestClientHandler
+    MySerialServer
+
+commit 18be73028b4ad65e6533945187928e699e3c3589
+Author: yehonatansofri <58885453+yehonatansofri@users.noreply.github.com>
+Date:   Thu Jan 9 16:09:38 2020 +0200
+
+    Delete main.cpp
+
+commit 505cea08c3fa0a21c6d659816b1d824f868f61d4
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Thu Jan 9 16:03:21 2020 +0200
+
+    uploading main interfaces
+
+commit e23ed112a9a5b56fc1fd3c829a36eaf36355162e
+Author: yehonatansofri <ysofri@gmail.com>
+Date:   Thu Jan 9 14:44:47 2020 +0200
+
+    #3
