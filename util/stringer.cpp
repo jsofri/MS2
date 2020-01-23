@@ -102,6 +102,10 @@ Point Stringer::pointFromString(string str) {
   vector<string> coordinates = doRegex(str, REGEX);
   int i, j;
 
+  if (coordinates.size() != 2) {
+      throw "invalid point";
+  }
+
   i = stoi(coordinates[0]);
   j = stoi(coordinates[1]);
 

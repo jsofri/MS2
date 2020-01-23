@@ -80,8 +80,5 @@ void MySerialServer::acceptClients(int socketfd, sockaddr_in& address, ClientHan
         } else {
             break;
         }
-
-        cout << "Client ended the connection" << endl;
-
     }
 }

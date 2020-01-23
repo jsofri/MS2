@@ -3,15 +3,16 @@
 //
 
 #include "matrix_adapter.h"
+#define CHOSEN_ALGO MatrixAStar
 
 using namespace std;
 
 
 string MatrixAdapter::solve(Searchable<Point> & searchable) {
-    MatrixAStar matrix_astar;
+    CHOSEN_ALGO algo;
     string solution;
 
-    solution = matrix_astar.search(searchable);
+    solution = algo.search(searchable);
 
     return solution;
 }

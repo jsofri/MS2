@@ -10,6 +10,11 @@ std::string MatrixSolutionAnalyst::getSolution(Matrix<AMDC>& matrix, Point& star
   AMDC amdc;
   Point path_point = end;
 
+  if (start == end) {
+      string result = "You're already there, honey!\n";
+      return result;
+  }
+
   matrix_ = matrix;
   do {
     amdc = matrix.getCell(path_point);

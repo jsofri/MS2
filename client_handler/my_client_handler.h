@@ -9,7 +9,7 @@
 #include "string"
 #include <unistd.h>
 #include <sys/socket.h>
-#include "matrix_adapter.h"
+#include "../solvers/matrix_adapter.h"
 #include "../util/stringer.h"
 #include "../objects/matrix.h"
 #include "../builders/matrix_builder.h"
@@ -24,6 +24,7 @@ class MyClientHandler : public ClientHandler {
   void handleClient(int &);
  private:
   bool endNotEntered(list<string>);
+  bool inputIsGood(list<string>);
   string setAndSolveMatrix(list<string>);
   MatrixSearchable makeSearchable(list<string>);
 };

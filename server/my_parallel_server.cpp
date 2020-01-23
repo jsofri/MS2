@@ -53,7 +53,6 @@ void MyParallelServer::run(int & port, ClientHandler* & client_handler){
 
     for(auto iter = thread_list_.begin(); iter != thread_list_.end(); iter++) {
         (*iter).join();
-        cout<<"made one join" <<endl;
     }
 
     // close listening server socket
@@ -75,13 +74,11 @@ void MyParallelServer::acceptClients(int socketfd, sockaddr_in& address, ClientH
         auto s = (struct sockaddr *) &address;
         auto m = (socklen_t *) &address;
         client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
-        cout << "trying to accept" << endl;
         if (client_socket != -1) {
 
             //make new thread and add it to list and run it
             std::thread new_thread(&MyParallelServer::runOneClient, this, client_handler, client_socket);
             thread_list_.push_back(std::move(new_thread));
-            cout << "New client connected to server" << endl;
         } else {
             break;
         }

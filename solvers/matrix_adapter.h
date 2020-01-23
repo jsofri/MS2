@@ -7,7 +7,7 @@
 
 #include "../searchables/searchable.h"
 #include "../objects/point.h"
-#include "../solvers/solver.h"
+#include "solver.h"
 #include "../searchers/matrix_astar.h"
 
 

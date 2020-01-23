@@ -21,7 +21,7 @@ string MatrixAStar::search(Searchable<Point>& searchable) {
     try {
         runAStar();
     } catch (const char * exception) {
-        cerr << exception << endl;
+        return exception;
     }
 
     // return solution

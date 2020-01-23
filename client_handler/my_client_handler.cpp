@@ -45,18 +45,22 @@ bool MyClientHandler::endNotEntered(list<string> lines_list) {
 }
 
 string MyClientHandler::setAndSolveMatrix(list<string> lines_list) {
-    auto searchable = makeSearchable(lines_list);
-    string solution;
-    MatrixAdapter matrix_adapter;
+    try {
+        auto searchable = makeSearchable(lines_list);
+        string solution;
+        MatrixAdapter matrix_adapter;
 
-    if (file_cache_manager.exist(&searchable)) {
-        solution =  file_cache_manager.get(&searchable);
-    } else {
-    solution = matrix_adapter.solve(searchable);
-    file_cache_manager.insert(&searchable, solution);
-  }
+        if (file_cache_manager.exist(&searchable)) {
+            solution = file_cache_manager.get(&searchable);
+        } else {
+            solution = matrix_adapter.solve(searchable);
+            file_cache_manager.insert(&searchable, solution);
+        }
 
-  return solution;
+        return solution;
+    } catch (const char * e) {
+        return e;
+    }
 }
 
 MatrixSearchable MyClientHandler::makeSearchable(list<string> lines_list) {
@@ -64,6 +68,9 @@ MatrixSearchable MyClientHandler::makeSearchable(list<string> lines_list) {
   Matrix<int> matrix;
   list<string>::iterator iter;
 
+  if (!inputIsGood(lines_list)) {
+      throw "Invalid input\n";
+  }
   //make list to hold one line in each node
   lines_list = Stringer::listOfLines(lines_list);
 
@@ -77,4 +84,47 @@ MatrixSearchable MyClientHandler::makeSearchable(list<string> lines_list) {
   Point start = Stringer::pointFromString(*(--iter));
 
   return MatrixSearchable(matrix, start, end);
+}
+
+//check that list of string represent a real searchable
+bool MyClientHandler::inputIsGood(list<string> list) {
+    string first_row = list.front();
+    int commas, i, n = first_row.size();
+    std::list<string>::iterator iter;
+    bool ok = true;
+
+    if (list.size() < 4) {
+        ok = false;
+    }
+
+    for (commas = 0, i = 0; i < n; i++) {
+        if (first_row[i] == ',') {
+            commas++;
+        }
+    }
+
+    if (list.size() > commas + 4) {
+        ok = false;
+    }
+
+    iter = list.end();
+    iter--;//now in end\n
+    try {
+        Point p1 = Stringer::pointFromString(*(--iter));//now in end point
+        Point p2 = Stringer::pointFromString(*(--iter));//now in start point
+        int x1, x2, y1, y2;
+        x1 = p1.getX();
+        x2 = p2.getX();
+        y1 = p1.getY();
+        y2 = p2.getY();
+
+        if (((x1 < 0 || x1 > commas) || (x2 < 0 || x2 > commas))
+            || ((y1 < 0 || y1 > commas) || (y2 < 0 || y2 > commas))){
+            ok = false;
+        }
+    } catch (const char * e) {
+        ok = false;
+    }
+
+    return ok;
 }
